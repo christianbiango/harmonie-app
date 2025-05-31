@@ -1,4 +1,11 @@
 {
+  "moduleNameMapper": {
+    "^@/components/(.*)$": "<rootDir>/components/$1"
+  },
+  "presets": [
+    ["@babel/preset-env", { "targets": { "node": "current" } }],
+    "@babel/preset-typescript"
+  ],
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
