@@ -1,7 +1,8 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { env } from "@/config/env";
 
 export const createClient = () =>
   createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    env.SUPABASE.NEXT_PUBLIC_SUPABASE_URL!,
+    env.SUPABASE.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );

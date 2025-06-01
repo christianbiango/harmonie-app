@@ -4,9 +4,10 @@ import { Geist } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import AuthButton from "@/components/header-auth";
+import { env } from "@/config/env";
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+const defaultUrl = env.VERCEL_URL
+  ? `https://${env.VERCEL_URL}`
   : "http://localhost:3000";
 
 export const metadata = {
