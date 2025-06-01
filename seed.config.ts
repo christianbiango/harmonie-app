@@ -2,6 +2,8 @@ import { SeedPg } from "@snaplet/seed/adapter-pg";
 import { defineConfig } from "@snaplet/seed/config";
 import { Client } from "pg";
 import { env } from "./config/env";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" }); // Load environment variables from .env.local. When executing this script in Command Line, env variables are not automatically loaded, so we need to load them manually.
 
 export default defineConfig({
   adapter: async () => {
