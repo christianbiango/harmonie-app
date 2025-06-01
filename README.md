@@ -60,7 +60,16 @@ We are deploying and hosting this project's frontend on Vercel. The backend is m
 
 4. This template comes with the default shadcn/ui style initialized.
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+5. Local supabase development
+
+> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally. Once Supabase CLI is downloaded, you can then run the following commands:
+
+```bash
+supabase login
+supabase start
+```
+
+supabase start will automatically seed your local database but you can generate new value by uncommenting `seed.ts`file and running `npx tsx seed.ts`.
 
 ## Questions or issues
 
