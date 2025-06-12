@@ -16,7 +16,7 @@ export const signUpAction = async (formData: FormData) => {
   const parseResult = signupSchema.safeParse({ email, password });
   if (!parseResult.success) {
     const messages = parseResult.error.errors.map((e) => e.message).join(" | ");
-    return encodedRedirect("error", "/sign-up", messages);
+    throw new Error(messages);
   }
   const { email: validatedEmail, password: validatedPassword } =
     parseResult.data;
@@ -34,14 +34,13 @@ export const signUpAction = async (formData: FormData) => {
   });
 
   if (error) {
-    return encodedRedirect("error", "/sign-up", error.message);
-  } else {
-    return encodedRedirect(
-      "success",
-      "/sign-up",
-      "Merci pour votre inscription, vérifiez votre email pour confirmer votre compte."
-    );
+    throw new Error(error.message);
   }
+
+  return {
+    success:
+      "Merci pour votre inscription, vérifiez votre email pour confirmer votre compte.",
+  };
 };
 
 // ----------------------------------------------------------------------------

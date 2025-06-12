@@ -1,14 +1,56 @@
-import { signInAction } from "@/app/actions";
+"use client";
+
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signinSchema, type SigninData } from "@/lib/schemas/signinSchema";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
-export default async function Login(props: { searchParams: Promise<Message> }) {
-  const searchParams = await props.searchParams;
+export default function Login() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<Message | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SigninData>({
+    resolver: zodResolver(signinSchema),
+  });
+
+  const onSubmit = async (data: SigninData) => {
+    try {
+      setIsSubmitting(true);
+      setMessage(null);
+      const formData = new FormData();
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      const res = await fetch("/api/signin", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await res.json();
+      if (result.success) {
+        setMessage({ success: result.success });
+        window.location.href = "/protected";
+      } else {
+        setMessage({ error: result.error || "Erreur lors de la connexion." });
+      }
+    } catch (error) {
+      setMessage({ error: "Erreur lors de la connexion." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <form className="flex-1 flex flex-col min-w-64">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex-1 flex flex-col min-w-64"
+    >
       <h1 className="text-2xl font-medium">Connexion</h1>
       <p className="text-sm text-foreground">
         Pas de compte?{" "}
@@ -17,13 +59,12 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
         </Link>
       </p>
       <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+        {message && <FormMessage message={message} />}
         <Label htmlFor="email">Email</Label>
-        <Input
-          name="email"
-          placeholder="johndoe@gmail.com"
-          data-testid="login-email"
-          required
-        />
+        <Input {...register("email")} placeholder="johndoe@gmail.com" />
+        {errors.email && (
+          <p className="text-sm text-red-500">{errors.email.message}</p>
+        )}
         <div className="flex justify-between items-center">
           <Label htmlFor="password">Mot de passe</Label>
           <Link
@@ -35,19 +76,19 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
         </div>
         <Input
           type="password"
-          name="password"
+          {...register("password")}
           placeholder="Mot de passe"
-          data-testid="login-password"
-          required
         />
+        {errors.password && (
+          <p className="text-sm text-red-500">{errors.password.message}</p>
+        )}
         <SubmitButton
+          type="submit"
           pendingText="Connexion..."
-          data-testid="login-submit-button"
-          formAction={signInAction}
+          disabled={isSubmitting}
         >
           Connexion
         </SubmitButton>
-        <FormMessage message={searchParams} />
       </div>
     </form>
   );

@@ -1,53 +1,93 @@
-import { signUpAction } from "@/app/actions";
+"use client";
+
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signupSchema, type SignupData } from "@/lib/schemas/signupSchema";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 
-export default async function Signup(props: {
-  searchParams: Promise<Message>;
-}) {
-  const searchParams = await props.searchParams;
+export default function Signup() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState<Message | null>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupData>({
+    resolver: zodResolver(signupSchema),
+  });
 
-  console.log("error" in searchParams);
+  const onSubmit = async (data: SignupData) => {
+    try {
+      setIsSubmitting(true);
+      setMessage(null);
+      const formData = new FormData();
+      formData.append("email", data.email);
+      formData.append("password", data.password);
 
-  if ("message" in searchParams) {
-    return (
-      <div className="w-full flex-1 flex items-center h-screen sm:max-w-md justify-center gap-2 p-4">
-        <FormMessage message={searchParams} />
-      </div>
-    );
-  }
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await res.json();
+      if (result.success) {
+        setMessage({ success: result.success });
+      } else {
+        setMessage({
+          error:
+            result.error || "Une erreur est survenue lors de l'inscription.",
+        });
+      }
+    } catch (error) {
+      setMessage({ error: "Une erreur est survenue lors de l'inscription." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <>
-      <form className="flex flex-col min-w-64 max-w-64 mx-auto">
-        <h1 className="text-2xl font-medium">Inscription</h1>
-        <p className="text-sm text text-foreground">
-          Déjà un compte?{" "}
-          <Link className="text-primary font-medium underline" href="/sign-in">
-            Connexion
-          </Link>
-        </p>
-        <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
-          <Label htmlFor="email">Email</Label>
-          <Input name="email" placeholder="johndoe@gmail.com" required />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col min-w-64 max-w-64 mx-auto"
+    >
+      <h1 className="text-2xl font-medium">Inscription</h1>
+      <p className="text-sm text text-foreground">
+        Déjà un compte?{" "}
+        <Link className="text-primary font-medium underline" href="/sign-in">
+          Connexion
+        </Link>
+      </p>
+      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+        {message && <FormMessage message={message} />}
 
-          <Label htmlFor="password">Mot de passe</Label>
-          <Input
-            type="password"
-            name="password"
-            placeholder="Mot de passe"
-            minLength={6}
-            required
-          />
-          <SubmitButton formAction={signUpAction} pendingText="Inscription...">
-            S&apos;inscrire
-          </SubmitButton>
-          <FormMessage message={searchParams} />
-        </div>
-      </form>
-    </>
+        <Label htmlFor="email">Email</Label>
+        <Input {...register("email")} placeholder="johndoe@gmail.com" />
+        {errors.email && (
+          <p className="text-sm text-red-500">{errors.email.message}</p>
+        )}
+
+        <Label htmlFor="password">Mot de passe</Label>
+        <Input
+          type="password"
+          {...register("password")}
+          placeholder="Mot de passe"
+        />
+        {errors.password && (
+          <p className="text-sm text-red-500">{errors.password.message}</p>
+        )}
+
+        <SubmitButton
+          type="submit"
+          pendingText="Inscription..."
+          disabled={isSubmitting}
+        >
+          S&apos;inscrire
+        </SubmitButton>
+      </div>
+    </form>
   );
 }
