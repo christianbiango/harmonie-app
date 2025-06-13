@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignInFormType, signInSchema } from "@/lib/schemas/signInSchema";
+import { SignInFormType, signInSchema } from "@/lib/schemas/signinSchema";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
@@ -51,7 +51,11 @@ export default function Login() {
       <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
         {message && <FormMessage message={message} />}
         <Label htmlFor="email">Email</Label>
-        <Input {...register("email")} placeholder="johndoe@gmail.com" />
+        <Input
+          {...register("email")}
+          placeholder="johndoe@gmail.com"
+          data-testid="login-email"
+        />
         {errors.email && (
           <p className="text-sm text-red-500">{errors.email.message}</p>
         )}
@@ -68,6 +72,7 @@ export default function Login() {
           type="password"
           {...register("password")}
           placeholder="Mot de passe"
+          data-testid="login-password"
         />
         {errors.password && (
           <p className="text-sm text-red-500">{errors.password.message}</p>
@@ -76,6 +81,7 @@ export default function Login() {
           type="submit"
           pendingText="Connexion..."
           disabled={isSubmitting}
+          data-testid="login-submit-button"
         >
           Connexion
         </SubmitButton>
