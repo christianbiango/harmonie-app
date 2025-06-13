@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { signUpAction } from "@/app/actions";
 
 export default function Signup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,18 +29,12 @@ export default function Signup() {
       const formData = new FormData();
       formData.append("email", data.email);
       formData.append("password", data.password);
-
-      const res = await fetch("/api/signup", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await res.json();
+      const result = await signUpAction(formData);
       if (result.success) {
         setMessage({ success: result.success });
       } else {
         setMessage({
-          error:
-            result.error || "Une erreur est survenue lors de l'inscription.",
+          error: "Une erreur est survenue lors de l'inscription.",
         });
       }
     } catch (error) {

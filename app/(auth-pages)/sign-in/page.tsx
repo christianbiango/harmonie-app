@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signinSchema, type SigninData } from "@/lib/schemas/signinSchema";
+import { SignInFormType, signInSchema } from "@/lib/schemas/signInSchema";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { signInAction } from "@/app/actions";
 
 export default function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,35 +18,24 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SigninData>({
-    resolver: zodResolver(signinSchema),
+  } = useForm<SignInFormType>({
+    resolver: zodResolver(signInSchema),
   });
 
-  const onSubmit = async (data: SigninData) => {
+  const onSubmit = async (data: SignInFormType) => {
     try {
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
       formData.append("email", data.email);
       formData.append("password", data.password);
-      const res = await fetch("/api/signin", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await res.json();
-      if (result.success) {
-        setMessage({ success: result.success });
-        window.location.href = "/protected";
-      } else {
-        setMessage({ error: result.error || "Erreur lors de la connexion." });
-      }
+      await signInAction(formData);
     } catch (error) {
       setMessage({ error: "Erreur lors de la connexion." });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
