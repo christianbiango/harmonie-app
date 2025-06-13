@@ -391,12 +391,6 @@ INSERT INTO "public"."offers_bookings" ("created_at", "people", "status", "id_do
 
 
 --
--- Data for Name: test; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-
-
---
 -- Data for Name: buckets; Type: TABLE DATA; Schema: storage; Owner: supabase_storage_admin
 --
 
@@ -451,13 +445,6 @@ SELECT pg_catalog.setval('"public"."holidays_offers_id_seq"', 4, true);
 --
 
 SELECT pg_catalog.setval('"public"."offers_availability_id_seq"', 2, true);
-
-
---
--- Name: test_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"public"."test_id_seq"', 1, false);
 
 
 --
