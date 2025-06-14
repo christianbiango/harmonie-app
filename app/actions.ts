@@ -4,41 +4,47 @@ import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { signupSchema } from "@/lib/schemas/signupSchema";
 
+// S'inscrire
 export const signUpAction = async (formData: FormData) => {
+  // Récupération et parsing des données
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
+
+  // Validation avec Zod
+  const parseResult = signupSchema.safeParse({ email, password });
+  if (!parseResult.success) {
+    const messages = parseResult.error.errors.map((e) => e.message).join(" | ");
+    throw new Error(messages);
+  }
+  const { email: validatedEmail, password: validatedPassword } =
+    parseResult.data;
+
   const supabase = await createClient();
   const origin = (await headers()).get("origin");
 
-  if (!email || !password) {
-    return encodedRedirect(
-      "error",
-      "/sign-up",
-      "L'email et le mot de passe sont requis'"
-    );
-  }
-
+  // Inscription via Supabase
   const { error } = await supabase.auth.signUp({
-    email,
-    password,
+    email: validatedEmail,
+    password: validatedPassword,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
     },
   });
 
   if (error) {
-    console.error(error.code + " " + error.message);
-    return encodedRedirect("error", "/sign-up", error.message);
-  } else {
-    return encodedRedirect(
-      "success",
-      "/sign-up",
-      "Merci pour votre inscription, vérifiez votre email pour confirmer votre compte."
-    );
+    throw new Error(error.message);
   }
+
+  return {
+    success:
+      "Merci pour votre inscription, vérifiez votre email pour confirmer votre compte.",
+  };
 };
 
+// ----------------------------------------------------------------------------
+// Se connecter
 export const signInAction = async (formData: FormData) => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -48,14 +54,14 @@ export const signInAction = async (formData: FormData) => {
     email,
     password,
   });
-
   if (error) {
     return encodedRedirect("error", "/sign-in", error.message);
   }
-
   return redirect("/protected");
 };
 
+// ----------------------------------------------------------------------------
+// Mot de passe oublié
 export const forgotPasswordAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
   const supabase = await createClient();
@@ -90,6 +96,8 @@ export const forgotPasswordAction = async (formData: FormData) => {
   );
 };
 
+// ----------------------------------------------------------------------------
+// Réinitialiser le mot de passe
 export const resetPasswordAction = async (formData: FormData) => {
   const supabase = await createClient();
 
@@ -131,6 +139,8 @@ export const resetPasswordAction = async (formData: FormData) => {
   );
 };
 
+// ----------------------------------------------------------------------------
+// Se déconnecter
 export const signOutAction = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();

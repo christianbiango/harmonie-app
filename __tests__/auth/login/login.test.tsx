@@ -23,9 +23,9 @@ jest.mock("@/utils/utils", () => ({
 }));
 
 describe("Login Form", () => {
-  it("renders an async server component", async () => {
+  it("renders login client component", () => {
     // Arrange & Act
-    render(await Login({ searchParams: {} as Promise<Message> }));
+    render(<Login />);
 
     // Assert
     expect(screen.getByTestId("login-email")).toBeInTheDocument();
