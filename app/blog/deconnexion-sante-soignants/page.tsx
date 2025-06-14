@@ -3,9 +3,9 @@ import PostTemplate from "@/components/posts/PostTemplate";
 
 export const metadata = {
   title:
-    "Prévenir le burn-out des soignants grâce à des séjours en milieu rural",
+    "Pourquoi la déconnexion est essentielle pour la santé mentale des soignants ?  ",
   description:
-    "Découvrez comment des séjours en milieu rural permettent aux soignants de prévenir l'épuisement professionnel et de retrouver équilibre et sérénité.",
+    "Le temps de déconnexion, clé de la prévention du burn-out ? Analyse des effets concrets sur la santé mentale des professionnels du soin.",
   keywords: ["Santé et prévention"],
 };
 
@@ -13,23 +13,23 @@ const SejoursRurauxBurnoutSoignants = () => {
   const articleContent = `
   <section aria-labelledby="intro">
     <p class="my-2">
-      Prévenir l'épuisement des soignants grâce à la nature et à la mobilité rurale.<br>
-      Le burn-out touche aujourd'hui près d'un tiers des professionnels de santé en France. Médecins, infirmiers, kinésithérapeutes ou psychologues font face à des rythmes de travail intenses, une pression constante et bien souvent à un sentiment d'isolement. Face à ces défis, de nouvelles solutions émergent pour favoriser le bien-être des soignants.
-    </p>
+      Prévenir l’épuisement des soignants grâce à la nature et à la mobilité rurale.<br>
+      Le burn-out touche aujourd’hui près d’un tiers des professionnels de santé en France. Médecins, infirmiers, kinésithérapeutes ou psychologues font face à des rythmes de travail intenses, une pression constante et bien souvent à un sentiment d’isolement. Face à ces défis, de nouvelles solutions émergent pour favoriser le bien-être des soignants.
+    </p><br>
     <p class="my-2">
-      Parmi elles, les séjours en milieu rural offrent un véritable souffle d'air. Ces pauses, qu'elles soient de quelques jours ou de plusieurs semaines, permettent aux soignants de recharger leurs batteries dans un environnement apaisant, tout en contribuant à revitaliser les territoires en tension médicale.
+      Parmi elles, les séjours en milieu rural offrent un véritable souffle d’air. Ces pauses, qu’elles soient de quelques jours ou de plusieurs semaines, permettent aux soignants de recharger leurs batteries dans un environnement apaisant, tout en contribuant à revitaliser les territoires en tension médicale.
     </p>
   </section>
   <section role="region" aria-labelledby="burnout-heading">
     <h2 id="burnout-heading" class="my-6 font-bold text-3xl">Le burn-out chez les soignants : un risque bien réel</h2>
     <p class="my-2">
-      Exercer un métier du soin implique un engagement profond envers les autres. Mais lorsque les journées s'enchaînent sans répit, que les temps de repos sont rares et que les démarches administratives s'accumulent, l'équilibre personnel peut se fragiliser.
+      Exercer un métier du soin implique un engagement profond envers les autres. Mais lorsque les journées s’enchaînent sans répit, que les temps de repos sont rares et que les démarches administratives s’accumulent, l’équilibre personnel peut se fragiliser.
     </p>
     <p class="my-2">
-      En libéral, la situation est d'autant plus délicate : pas de congés payés, une activité directement liée au nombre de patients, des remplacements difficiles à organiser. Résultat : de nombreux soignants repoussent leurs temps de repos, jusqu'à parfois atteindre un point de rupture. Le burn-out soignant ne connaît pas de frontières : il touche toutes les spécialités, tous les âges, et peut survenir brutalement.
+      En libéral, la situation est d’autant plus délicate : pas de congés payés, une activité directement liée au nombre de patients, des remplacements difficiles à organiser. Résultat : de nombreux soignants repoussent leurs temps de repos, jusqu’à parfois atteindre un point de rupture. Le burn-out soignant ne connaît pas de frontières : il touche toutes les spécialités, tous les âges, et peut survenir brutalement.
     </p>
     <p class="my-2">
-      Ce syndrome, désormais reconnu comme maladie professionnelle dans certains cas, a des conséquences lourdes : perte d'estime de soi, troubles du sommeil, anxiété, isolement social, voire dépression sévère. Il ne s'agit donc pas d'un simple "coup de fatigue", mais d'un vrai trouble qu'il est impératif de prévenir.
+      Ce syndrome, désormais reconnu comme maladie professionnelle dans certains cas, a des conséquences lourdes : perte d’estime de soi, troubles du sommeil, anxiété, isolement social, voire dépression sévère. Il ne s’agit donc pas d’un simple « coup de fatigue », mais d’un vrai trouble qu’il est impératif de prévenir.
     </p>
   </section>
 
@@ -41,12 +41,12 @@ const SejoursRurauxBurnoutSoignants = () => {
     <ul class="list-disc list-inside my-4">
       <li>Se reconnecter à la nature et au rythme des saisons</li>
       <li>Pratiquer des activités ressourçantes (randonnée, yoga, méditation, jardinage)</li>
-      <li>Redécouvrir un sentiment de liberté et d'espace</li>
+      <li>Redécouvrir un sentiment de liberté et d’espace</li>
       <li>Échapper à la surcharge numérique et aux sollicitations permanentes</li>
       <li>Retrouver une qualité de sommeil et une clarté mentale</li>
     </ul>
     <p class="my-2">
-      Changer d'air, marcher en forêt, prendre le temps d'observer les paysages : autant de gestes simples mais puissants pour restaurer une santé mentale mise à mal par la pression du quotidien. Ce type de déconnexion volontaire offre un sas de respiration nécessaire à tout soignant souhaitant durer dans son exercice.
+      Changer d’air, marcher en forêt, prendre le temps d’observer les paysages : autant de gestes simples mais puissants pour restaurer une santé mentale mise à mal par la pression du quotidien. Ce type de déconnexion volontaire offre un sas de respiration nécessaire à tout soignant souhaitant durer dans son exercice.
     </p>
   </section>
 
@@ -109,7 +109,6 @@ const SejoursRurauxBurnoutSoignants = () => {
       author="Nephos"
       date={new Date()}
       imageUrl="/images/sejours-ruraux-burnout-soignants.webp"
-      altText="Deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
       tags={["Santé et prévention"]}
     />
   );
