@@ -8,6 +8,7 @@ interface PostTemplateProps {
   date: Date;
   imageUrl?: string;
   tags?: string[];
+  altText?: string;
 }
 
 const PostTemplate: React.FC<PostTemplateProps> = ({
@@ -17,6 +18,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({
   date,
   imageUrl,
   tags = [],
+  altText,
 }) => {
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat("fr-FR", {
@@ -58,7 +60,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({
         <div className="relative w-fulL mb-8">
           <Image
             src={imageUrl}
-            alt={title}
+            alt={altText || ""}
             width={864}
             height={400}
             className="rounded-lg w-full h-full"
