@@ -9,7 +9,7 @@ export const metadata = {
   keywords: ["Santé et prévention"],
 };
 
-const SejoursRurauxBurnoutSoignants = () => {
+const DeconnexionSanteSoignants = () => {
   const articleContent = `
   <section aria-labelledby="intro">
     <p class="my-2">
@@ -39,7 +39,7 @@ const SejoursRurauxBurnoutSoignants = () => {
       Les neurosciences le confirment : l'alternance entre activité et repos stimule la créativité, la concentration et la stabilité émotionnelle. Les soignants qui intègrent des temps de récupération dans leur agenda se montrent plus résilients face aux aléas du quotidien.
     </p>
     <img 
-      src="/images/pause-infirmiere.webp" 
+      src="/images/articles/pause-infirmiere.webp" 
       alt="Une professionnelle de santé en tenue médicale prenant une pause café, assise près d'une fenêtre"
       role="img" 
       aria-label="Illustration d'une professionnelle de santé en pause, incarnant le besoin de déconnexion" 
@@ -77,7 +77,7 @@ const SejoursRurauxBurnoutSoignants = () => {
     Des retours d’expérience montrent que les professionnels qui s’accordent régulièrement un temps de déconnexion démontrent une meilleure rétention dans leur poste, une satisfaction professionnelle accrue, et même une diminution du recours aux médicaments anxiolytiques.
   </p>
   <img 
-    src="/images/seance-yoga-soignants.webp" 
+    src="/images/articles/seance-yoga-soignants.webp" 
     alt="Professionnels de santé pratiquant une séance de yoga en plein air, assis en tailleur sur des tapis"
     role="img" 
     aria-label="Illustration de soignants méditant dans la nature pour favoriser leur bien-être mental" 
@@ -104,10 +104,10 @@ const SejoursRurauxBurnoutSoignants = () => {
       content={articleContent}
       author="Nephos"
       date={new Date()}
-      imageUrl="/images/deconnexion-sante-soignants.webp"
+      imageUrl="/images/articles/deconnexion-sante-soignants.webp"
+      altText="Deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
       tags={["Santé et prévention"]}
     />
   );
 };
-
-export default SejoursRurauxBurnoutSoignants;
+export default DeconnexionSanteSoignants;
