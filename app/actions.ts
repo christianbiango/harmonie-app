@@ -54,11 +54,9 @@ export const signInAction = async (formData: FormData) => {
     email,
     password,
   });
-
   if (error) {
     return encodedRedirect("error", "/sign-in", error.message);
   }
-
   return redirect("/protected");
 };
 

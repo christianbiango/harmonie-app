@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signinSchema, type SigninData } from "@/lib/schemas/signinSchema";
+import { SignInFormType, signInSchema } from "@/lib/schemas/signinSchema";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { signInAction } from "@/app/actions";
 
 export default function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,68 +18,72 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SigninData>({
-    resolver: zodResolver(signinSchema),
+  } = useForm<SignInFormType>({
+    resolver: zodResolver(signInSchema),
   });
 
-  const onSubmit = async (data: SigninData) => {
+  const onSubmit = async (data: SignInFormType) => {
     try {
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
       formData.append("email", data.email);
       formData.append("password", data.password);
-      const res = await fetch("/api/signin", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await res.json();
-      if (result.success) {
-        setMessage({ success: result.success });
-        window.location.href = "/protected";
-      } else {
-        setMessage({ error: result.error || "Erreur lors de la connexion." });
-      }
+      await signInAction(formData);
     } catch (error) {
       setMessage({ error: "Erreur lors de la connexion." });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex-1 flex flex-col min-w-64"
     >
-      <h1 className="text-2xl font-medium">Connexion</h1>
-      <p className="text-sm text-foreground">
-        Pas de compte?{" "}
-        <Link className="text-foreground font-medium underline" href="/sign-up">
-          S&apos;inscrire
-        </Link>
-      </p>
-      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+      <img
+        src="/images/logo/nephos-logo.svg"
+        alt="Logo de la plateforme digitale Nephos"
+        aria-label="Logo de la plateforme digitale Nephos"
+        width={80}
+        height={80}
+        className="mx-auto my-4"
+      />
+      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-nephos-gray">
         {message && <FormMessage message={message} />}
-        <Label htmlFor="email">Email</Label>
-        <Input {...register("email")} placeholder="johndoe@gmail.com" />
+        <Label htmlFor="email" className="hidden md:block">
+          Email
+        </Label>
+        <Input
+          {...register("email")}
+          placeholder="E-mail"
+          data-testid="login-email"
+          className="bg-nephos-light-bg"
+        />
         {errors.email && (
           <p className="text-sm text-red-500">{errors.email.message}</p>
         )}
-        <div className="flex justify-between items-center">
-          <Label htmlFor="password">Mot de passe</Label>
-          <Link
-            className="text-xs text-foreground underline"
-            href="/forgot-password"
+        <div>
+          <Label
+            htmlFor="password"
+            className="text-nephos-gray hidden md:block"
           >
-            Mot de passe oublié?
-          </Link>
+            Mot de passe
+          </Label>
         </div>
         <Input
           type="password"
           {...register("password")}
           placeholder="Mot de passe"
+          data-testid="login-password"
+          className="bg-nephos-light-bg mb-0"
         />
+        <Link
+          className="text-xs underline text-nephos-gray text-right"
+          href="/forgot-password"
+        >
+          Mot de passe oublié?
+        </Link>
         {errors.password && (
           <p className="text-sm text-red-500">{errors.password.message}</p>
         )}
@@ -86,9 +91,20 @@ export default function Login() {
           type="submit"
           pendingText="Connexion..."
           disabled={isSubmitting}
+          data-testid="login-submit-button"
+          className="bg-nephos-primary"
         >
-          Connexion
+          Se connecter
         </SubmitButton>
+        <p className="text-sm text-foreground">
+          Je n&apos;ai pas de compte ?{" "}
+          <Link
+            className="text-foreground font-medium underline text-nephos-primary-dark"
+            href="/sign-up"
+          >
+            S&apos;inscrire
+          </Link>
+        </p>
       </div>
     </form>
   );

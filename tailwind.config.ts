@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -51,6 +54,12 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        nephos: {
+          gray: "#61708A",
+          "light-bg": "#F0F2F5",
+          primary: "#0A3678",
+          "primary-dark": "#0D347A",
         },
       },
       borderRadius: {
