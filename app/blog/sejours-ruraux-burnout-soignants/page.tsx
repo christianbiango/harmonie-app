@@ -108,7 +108,7 @@ const SejoursRurauxBurnoutSoignants = () => {
       content={articleContent}
       author="Nephos"
       date={new Date()}
-      imageUrl="/images/sejours-ruraux-burnout-soignants.webp"
+      imageUrl="/images/articles/sejours-ruraux-burnout-soignants.webp"
       altText="Deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
       tags={["Santé et prévention"]}
     />
