@@ -113,7 +113,7 @@ const TemoignagesMobiliteRurale = () => {
 
   return (
     <PostTemplate
-      title="Comment la nature améliore le bien-être des soignants au quotidien ?"
+      title="Témoignages : ces soignants qui ont retrouvé un équilibre grâce à la mobilité rurale"
       content={articleContent}
       author="Nephos"
       date={new Date()}
