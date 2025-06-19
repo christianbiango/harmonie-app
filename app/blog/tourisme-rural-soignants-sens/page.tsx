@@ -18,18 +18,9 @@ const TourismeRuralSoignantSens = () => {
     <p class="my-2">
       Le tourisme rural apparaît alors comme une voie concrète vers cette transformation. Non pas un simple voyage, mais une immersion temporaire ou prolongée dans un environnement apaisant, humain, ancré. Découvrons pourquoi de plus en plus de professionnels de santé s’orientent vers cette forme de mobilité pour réinventer leur quotidien.
     </p>
-    <img 
-      src="/images/articles/pause-infirmiere.webp" 
-      alt="Un soignant portant un sac à dos marchant sur un chemin en pleine nature, s’éloignant de la ville vers les montagnes"
-      role="img" 
-      aria-label="Illustration d’un professionnel de santé en marche vers un nouveau départ à travers le tourisme rural" 
-      width="600" 
-      height="400"
-      class="mx-auto rounded-sm"
-    />
   </section>
-  <section role="region" aria-labelledby="meaning-seeking">
-    <h2 id="meaning-seeking" class="my-6 font-bold text-3xl">La quête de sens : un moteur fort chez les soignants</h2>
+  <section role="region" aria-labelledby="meaning-seeking-heading">
+    <h2 id="meaning-seeking-heading" class="my-6 font-bold text-3xl">La quête de sens : un moteur fort chez les soignants</h2>
     <p class="my-2">
       Les dernières études sur la santé mentale des soignants montrent une tendance forte : le besoin de retrouver du sens. Ce besoin naît d’un écart grandissant entre les valeurs du soin (écoute, humanité, relation) et la réalité du terrain (temps contraint, bureaucratie, pression économique).
     </p>
