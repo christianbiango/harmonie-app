@@ -50,7 +50,7 @@ export default function Signup() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col min-w-72 max-w-72 mx-auto mb-32"
+      className="flex flex-col min-w-72 max-w-72 mx-auto"
     >
       <img
         src="/images/logo/nephos-logo.svg"

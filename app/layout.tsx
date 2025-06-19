@@ -64,18 +64,18 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main className="min-h-screen flex flex-col items-center">
-            <div className="flex-1 w-full flex flex-col gap-20 items-center">
+            <div className="flex-1 w-full flex flex-col gap-15 items-center">
               <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
                 <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
                   <div className="flex gap-5 items-center font-semibold">
                     <Link href={"/"}>
                       <img
-                        src="/images/logo/nephos-logo-min.svg"
+                        src="/images/logo/nephos-logo-baseline.svg"
                         alt="Logo de la plateforme digitale Nephos"
                         role="img"
                         aria-label="Logo de la plateforme digitale Nephos"
-                        width={40}
-                        height={20}
+                        width={80}
+                        height={80}
                       />
                     </Link>
                     <AuthButton></AuthButton>
