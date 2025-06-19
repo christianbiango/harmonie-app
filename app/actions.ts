@@ -9,22 +9,35 @@ import { signupSchema } from "@/lib/schemas/signupSchema";
 // S'inscrire
 export const signUpAction = async (formData: FormData) => {
   // Récupération et parsing des données
+  const prenom = formData.get("prenom")?.toString();
+  const nom = formData.get("nom")?.toString();
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
+  const confirmPassword = formData.get("confirmPassword")?.toString();
 
   // Validation avec Zod
-  const parseResult = signupSchema.safeParse({ email, password });
+  const parseResult = signupSchema.safeParse({
+    prenom,
+    nom,
+    email,
+    password,
+    confirmPassword,
+  });
   if (!parseResult.success) {
     const messages = parseResult.error.errors.map((e) => e.message).join(" | ");
     throw new Error(messages);
   }
-  const { email: validatedEmail, password: validatedPassword } =
-    parseResult.data;
-
-  const supabase = await createClient();
-  const origin = (await headers()).get("origin");
+  const {
+    nom: validatedNom,
+    prenom: validatedPrenom,
+    email: validatedEmail,
+    password: validatedPassword,
+    confirmPassword: validatedConfirmPassword,
+  } = parseResult.data;
 
   // Inscription via Supabase
+  const supabase = await createClient();
+  const origin = (await headers()).get("origin");
   const { error } = await supabase.auth.signUp({
     email: validatedEmail,
     password: validatedPassword,

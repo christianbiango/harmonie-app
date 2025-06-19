@@ -27,8 +27,11 @@ export default function Signup() {
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
+      formData.append("prenom", data.prenom);
+      formData.append("nom", data.nom);
       formData.append("email", data.email);
       formData.append("password", data.password);
+      formData.append("confirmPassword", data.confirmPassword);
       const result = await signUpAction(formData);
       if (result.success) {
         setMessage({ success: result.success });
@@ -64,17 +67,25 @@ export default function Signup() {
         <Label htmlFor="prenom" className="hidden md:block">
           Prénom
         </Label>
-        <Input placeholder="Prénom" className="bg-nephos-light-bg " />
-        {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+        <Input
+          placeholder="Prénom"
+          {...register("prenom")}
+          className="bg-nephos-light-bg "
+        />
+        {errors.prenom && (
+          <p className="text-sm text-red-500">{errors.prenom.message}</p>
         )}
 
         <Label htmlFor="nom" className="hidden md:block">
           Nom
         </Label>
-        <Input placeholder="Nom" className="bg-nephos-light-bg" />
-        {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+        <Input
+          placeholder="Nom"
+          {...register("nom")}
+          className="bg-nephos-light-bg"
+        />
+        {errors.nom && (
+          <p className="text-sm text-red-500">{errors.nom.message}</p>
         )}
 
         <Label htmlFor="email" className="hidden md:block">
@@ -107,12 +118,14 @@ export default function Signup() {
         </Label>
         <Input
           type="password"
-          {...register("password")}
+          {...register("confirmPassword")}
           placeholder="Confirmer votre de passe"
           className="bg-nephos-light-bg"
         />
-        {errors.password && (
-          <p className="text-sm text-red-500">{errors.password.message}</p>
+        {errors.confirmPassword && (
+          <p className="text-sm text-red-500">
+            {errors.confirmPassword.message}
+          </p>
         )}
 
         <SubmitButton
