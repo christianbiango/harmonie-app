@@ -27,8 +27,8 @@ export default function Signup() {
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
-      formData.append("prenom", data.prenom);
-      formData.append("nom", data.nom);
+      formData.append("firstname", data.firstname);
+      formData.append("lastname", data.lastname);
       formData.append("email", data.email);
       formData.append("password", data.password);
       formData.append("confirmPassword", data.confirmPassword);
@@ -64,16 +64,16 @@ export default function Signup() {
       <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-nephos-gray">
         {message && <FormMessage message={message} />}
 
-        <Label htmlFor="prenom" className="hidden md:block">
+        <Label htmlFor="firstname" className="hidden md:block">
           Prénom
         </Label>
         <Input
           placeholder="Prénom"
-          {...register("prenom")}
+          {...register("firstname")}
           className="bg-nephos-light-bg "
         />
-        {errors.prenom && (
-          <p className="text-sm text-red-500">{errors.prenom.message}</p>
+        {errors.firstname && (
+          <p className="text-sm text-red-500">{errors.firstname.message}</p>
         )}
 
         <Label htmlFor="nom" className="hidden md:block">
@@ -81,11 +81,11 @@ export default function Signup() {
         </Label>
         <Input
           placeholder="Nom"
-          {...register("nom")}
+          {...register("lastname")}
           className="bg-nephos-light-bg"
         />
-        {errors.nom && (
-          <p className="text-sm text-red-500">{errors.nom.message}</p>
+        {errors.lastname && (
+          <p className="text-sm text-red-500">{errors.lastname.message}</p>
         )}
 
         <Label htmlFor="email" className="hidden md:block">

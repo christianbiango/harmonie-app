@@ -9,16 +9,16 @@ import { signupSchema } from "@/lib/schemas/signupSchema";
 // S'inscrire
 export const signUpAction = async (formData: FormData) => {
   // Récupération et parsing des données
-  const prenom = formData.get("prenom")?.toString();
-  const nom = formData.get("nom")?.toString();
+  const firstname = formData.get("firstname")?.toString();
+  const lastname = formData.get("lastname")?.toString();
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const confirmPassword = formData.get("confirmPassword")?.toString();
 
   // Validation avec Zod
   const parseResult = signupSchema.safeParse({
-    prenom,
-    nom,
+    lastname,
+    firstname,
     email,
     password,
     confirmPassword,
@@ -28,8 +28,8 @@ export const signUpAction = async (formData: FormData) => {
     throw new Error(messages);
   }
   const {
-    nom: validatedNom,
-    prenom: validatedPrenom,
+    lastname: validatedLastName,
+    firstname: validatedFirstName,
     email: validatedEmail,
     password: validatedPassword,
     confirmPassword: validatedConfirmPassword,
@@ -43,6 +43,10 @@ export const signUpAction = async (formData: FormData) => {
     password: validatedPassword,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
+      data: {
+        firstname: validatedFirstName,
+        lastname: validatedLastName,
+      },
     },
   });
 

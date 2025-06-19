@@ -3,14 +3,14 @@ import { z } from "zod";
 
 export const signupSchema = z
   .object({
-    nom: z
+    lastname: z
       .string()
       .min(2, { message: "Le nom doit contenir au moins 2 caractères" })
       .max(50, { message: "Le nom est trop long" })
       .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/, {
         message: "Le nom contient des caractères non autorisés",
       }),
-    prenom: z
+    firstname: z
       .string()
       .min(2, { message: "Le prénom doit contenir au moins 2 caractères" })
       .max(50, { message: "Le prénom est trop long" })
