@@ -27,8 +27,11 @@ export default function Signup() {
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
+      formData.append("firstname", data.firstname);
+      formData.append("lastname", data.lastname);
       formData.append("email", data.email);
       formData.append("password", data.password);
+      formData.append("confirmPassword", data.confirmPassword);
       const result = await signUpAction(formData);
       if (result.success) {
         setMessage({ success: result.success });
@@ -47,7 +50,7 @@ export default function Signup() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col min-w-72 max-w-72 mx-auto mb-32"
+      className="flex flex-col min-w-72 max-w-72 mx-auto"
     >
       <img
         src="/images/logo/nephos-logo.svg"
@@ -61,20 +64,28 @@ export default function Signup() {
       <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-nephos-gray">
         {message && <FormMessage message={message} />}
 
-        <Label htmlFor="prenom" className="hidden md:block">
+        <Label htmlFor="firstname" className="hidden md:block">
           Prénom
         </Label>
-        <Input placeholder="Prénom" className="bg-nephos-light-bg " />
-        {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+        <Input
+          placeholder="Prénom"
+          {...register("firstname")}
+          className="bg-nephos-light-bg "
+        />
+        {errors.firstname && (
+          <p className="text-sm text-red-500">{errors.firstname.message}</p>
         )}
 
         <Label htmlFor="nom" className="hidden md:block">
           Nom
         </Label>
-        <Input placeholder="Nom" className="bg-nephos-light-bg" />
-        {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+        <Input
+          placeholder="Nom"
+          {...register("lastname")}
+          className="bg-nephos-light-bg"
+        />
+        {errors.lastname && (
+          <p className="text-sm text-red-500">{errors.lastname.message}</p>
         )}
 
         <Label htmlFor="email" className="hidden md:block">
@@ -107,12 +118,14 @@ export default function Signup() {
         </Label>
         <Input
           type="password"
-          {...register("password")}
+          {...register("confirmPassword")}
           placeholder="Confirmer votre de passe"
           className="bg-nephos-light-bg"
         />
-        {errors.password && (
-          <p className="text-sm text-red-500">{errors.password.message}</p>
+        {errors.confirmPassword && (
+          <p className="text-sm text-red-500">
+            {errors.confirmPassword.message}
+          </p>
         )}
 
         <SubmitButton

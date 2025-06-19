@@ -39,7 +39,7 @@ export default function Login() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex-1 flex flex-col min-w-64"
+      className="flex flex-col min-w-64 max-w-64 mx-auto"
     >
       <img
         src="/images/logo/nephos-logo.svg"
@@ -78,15 +78,15 @@ export default function Login() {
           data-testid="login-password"
           className="bg-nephos-light-bg mb-0"
         />
+        {errors.password && (
+          <p className="text-sm text-red-500">{errors.password.message}</p>
+        )}
         <Link
           className="text-xs underline text-nephos-gray text-right"
           href="/forgot-password"
         >
           Mot de passe oublié?
         </Link>
-        {errors.password && (
-          <p className="text-sm text-red-500">{errors.password.message}</p>
-        )}
         <SubmitButton
           type="submit"
           pendingText="Connexion..."
@@ -96,7 +96,7 @@ export default function Login() {
         >
           Se connecter
         </SubmitButton>
-        <p className="text-sm text-foreground">
+        <p className="text-sm text-center">
           Je n&apos;ai pas de compte ?{" "}
           <Link
             className="text-foreground font-medium underline text-nephos-primary-dark"
