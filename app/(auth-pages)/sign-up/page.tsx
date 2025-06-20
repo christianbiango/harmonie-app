@@ -27,8 +27,11 @@ export default function Signup() {
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
+      formData.append("firstname", data.firstname);
+      formData.append("lastname", data.lastname);
       formData.append("email", data.email);
       formData.append("password", data.password);
+      formData.append("confirmPassword", data.confirmPassword);
       const result = await signUpAction(formData);
       if (result.success) {
         setMessage({ success: result.success });
@@ -47,42 +50,102 @@ export default function Signup() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col min-w-64 max-w-64 mx-auto"
+      className="flex flex-col min-w-72 max-w-72 mx-auto"
     >
-      <h1 className="text-2xl font-medium">Inscription</h1>
-      <p className="text-sm text text-foreground">
-        Déjà un compte?{" "}
-        <Link className="text-primary font-medium underline" href="/sign-in">
-          Connexion
-        </Link>
-      </p>
-      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+      <img
+        src="/images/logo/nephos-logo.svg"
+        alt="Logo de la plateforme digitale Nephos"
+        aria-label="Logo de la plateforme digitale Nephos"
+        width={80}
+        height={80}
+        className="mx-auto my-4"
+      />
+
+      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-nephos-gray">
         {message && <FormMessage message={message} />}
 
-        <Label htmlFor="email">Email</Label>
-        <Input {...register("email")} placeholder="johndoe@gmail.com" />
+        <Label htmlFor="firstname" className="hidden md:block">
+          Prénom
+        </Label>
+        <Input
+          placeholder="Prénom"
+          {...register("firstname")}
+          className="bg-nephos-light-bg "
+        />
+        {errors.firstname && (
+          <p className="text-sm text-red-500">{errors.firstname.message}</p>
+        )}
+
+        <Label htmlFor="nom" className="hidden md:block">
+          Nom
+        </Label>
+        <Input
+          placeholder="Nom"
+          {...register("lastname")}
+          className="bg-nephos-light-bg"
+        />
+        {errors.lastname && (
+          <p className="text-sm text-red-500">{errors.lastname.message}</p>
+        )}
+
+        <Label htmlFor="email" className="hidden md:block">
+          Email
+        </Label>
+        <Input
+          {...register("email")}
+          placeholder="E-mail"
+          className="bg-nephos-light-bg"
+        />
         {errors.email && (
           <p className="text-sm text-red-500">{errors.email.message}</p>
         )}
 
-        <Label htmlFor="password">Mot de passe</Label>
+        <Label htmlFor="password" className="hidden md:block">
+          Mot de passe
+        </Label>
         <Input
           type="password"
           {...register("password")}
           placeholder="Mot de passe"
+          className="bg-nephos-light-bg"
         />
         {errors.password && (
           <p className="text-sm text-red-500">{errors.password.message}</p>
+        )}
+
+        <Label htmlFor="password" className="hidden md:block">
+          Confirmer votre mot de passe
+        </Label>
+        <Input
+          type="password"
+          {...register("confirmPassword")}
+          placeholder="Confirmer votre de passe"
+          className="bg-nephos-light-bg"
+        />
+        {errors.confirmPassword && (
+          <p className="text-sm text-red-500">
+            {errors.confirmPassword.message}
+          </p>
         )}
 
         <SubmitButton
           type="submit"
           pendingText="Inscription..."
           disabled={isSubmitting}
+          className="bg-nephos-primary mb-2"
         >
           S&apos;inscrire
         </SubmitButton>
       </div>
+      <p className="text-sm text-foreground">
+        Vous avez déjà un compte?{" "}
+        <Link
+          className="text-foreground font-medium underline text-nephos-primary-dark"
+          href="/sign-in"
+        >
+          Connecter-vous.
+        </Link>
+      </p>
     </form>
   );
 }
