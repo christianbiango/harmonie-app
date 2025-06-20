@@ -21,15 +21,15 @@ const DestinationsRuralesRessourcementSoignants = () => {
     <p class="my-2">
       Idéal pour : une reconnexion avec les grands espaces Pourquoi : Nature brute, falaises spectaculaires, forêts paisibles. De nombreux gîtes accueillent des professionnels en recherche de silence et de clarté mentale.
     </p>
-    <img 
-      src="/images/articles/soignant-randonnee-montagne.webp" 
-      alt="Un soignant marchant sur un sentier entouré de sapins, en direction de montagnes enneigées"
-      role="img" 
-      aria-label="Illustration d’un professionnel de santé explorant un environnement montagnard pour se ressourcer en pleine nature" 
-      width="600" 
-      height="400"
-      class="mx-auto rounded-sm"
-    />
+    <div role="img" aria-label="Illustration d’un professionnel de santé explorant un environnement montagnard pour se ressourcer en pleine nature">
+      <img 
+        src="/images/articles/soignant-randonnee-montagne.webp" 
+        alt="Un soignant marchant sur un sentier entouré de sapins, en direction de montagnes enneigées"
+        width="600" 
+        height="400"
+        class="mx-auto rounded-sm"
+      />
+    </div>
   </section>
 
   <section role="region" aria-labelledby="creuse-retreat-heading">
@@ -93,15 +93,15 @@ const DestinationsRuralesRessourcementSoignants = () => {
   <p class="my-2">
     Idéal pour : les séjours actifs (randonnée, trail, ferme) Pourquoi : Immersion totale dans la ruralité, avec de nombreux programmes d’accueil de soignants en mobilité ou en reconversion.
   </p>
-  <img 
-    src="/images/articles/soignante-lecture-campagne.webp" 
-    alt="Une soignante assise sur une terrasse en bois, lisant un livre et buvant une boisson chaude, entourée de lavande et d’un paysage champêtre"
-    role="img" 
-    aria-label="Illustration d’une professionnelle de santé prenant un moment de repos à la campagne, profitant d’un cadre naturel serein" 
-    width="600" 
-    height="400"
-    class="mx-auto rounded-sm"
-  />
+  <div role="img" aria-label="Illustration d’une professionnelle de santé prenant un moment de repos à la campagne, profitant d’un cadre naturel serein" >
+    <img 
+      src="/images/articles/soignante-lecture-campagne.webp" 
+      alt="Une soignante assise sur une terrasse en bois, lisant un livre et buvant une boisson chaude, entourée de lavande et d’un paysage champêtre"
+      width="600" 
+      height="400"
+      class="mx-auto rounded-sm"
+    />
+  </div>
 </section>
 
 <section role="region" aria-labelledby="conclusion-heading">
@@ -117,12 +117,12 @@ const DestinationsRuralesRessourcementSoignants = () => {
 
   return (
     <PostTemplate
-      title="Le tourisme rural, une opportunité pour les soignants en quête de sens"
+      title="10 destinations rurales idéales pour se ressourcer en tant que soignant"
       content={articleContent}
       author="Nephos"
       date={new Date()}
       imageUrl="/images/articles/destinations-rurales-ressourcement-soignants.webp"
-      altText="Une carte de France illustrée avec des points mettant en valeur dix destinations rurales, idéale pour les soignants en pause bien-être"
+      ariaLabel="Illustration d'une carte de France illustrée avec des points mettant en valeur dix destinations rurales, idéale pour les soignants en pause bien-être"
       tags={["Santé et prévention"]}
     />
   );

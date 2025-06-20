@@ -27,15 +27,15 @@ const TourismeRuralSoignantSens = () => {
     <p class="my-2">
       Quitter temporairement son cadre habituel pour découvrir un territoire rural permet de se reconnecter à l’essence du métier. Ici, le soin reprend une dimension humaine, contextuelle, souvent intergénérationnelle. La relation au patient redevient centrale, sans les filtres des contraintes hospitalières ou administratives.
     </p>
-    <img 
-      src="/images/articles/soignant-echange-patient-rural.webp" 
-      alt="Un soignant en tenue médicale échange avec un patient âgé devant une maison en pierre en milieu rural"
-      role="img" 
-      aria-label="Illustration d’un soignant en dialogue bienveillant avec un patient dans un cadre rural." 
-      width="600" 
-      height="400"
-      class="mx-auto rounded-sm"
-    />
+    <div role="img" aria-label="Illustration d’un soignant en dialogue bienveillant avec un patient dans un cadre rural.">
+      <img 
+        src="/images/articles/soignant-echange-patient-rural.webp" 
+        alt="Un soignant en tenue médicale échange avec un patient âgé devant une maison en pierre en milieu rural"
+        width="600" 
+        height="400"
+        class="mx-auto rounded-sm"
+      />
+    </div>
   </section>
 
   <section role="region" aria-labelledby="rural-tourism-commitment-heading">
@@ -56,15 +56,15 @@ const TourismeRuralSoignantSens = () => {
   <p class="my-2">
     De nombreux soignants témoignent d’un effet quasi immédiat sur leur bien-être : amélioration du sommeil, réduction de l’irritabilité, regain d’énergie. Ce sont les premiers signes d’une récupération psychique souvent mise de côté en contexte urbain.
   </p>
-  <img 
-    src="/images/articles/soignant-detente-hamac.webp" 
-    alt="Un soignant en tenue médicale échange avec un patient âgé devant une maison en pierre en milieu rural"
-    role="img" 
-    aria-label="Illustration d’un soignant se reposant dans la nature, retrouvant énergie et sérénité." 
-    width="600" 
-    height="400"
-    class="mx-auto rounded-sm"
-  />
+  <div role="img" aria-label="Illustration d’un soignant se reposant dans la nature, retrouvant énergie et sérénité.">
+    <img 
+      src="/images/articles/soignant-detente-hamac.webp" 
+      alt="Un soignant en tenue médicale échange avec un patient âgé devant une maison en pierre en milieu rural"
+      width="600" 
+      height="400"
+      class="mx-auto rounded-sm"
+    />
+  </div>
 </section>
 
 <section role="region" aria-labelledby="field-feedback-heading">
@@ -107,9 +107,10 @@ const TourismeRuralSoignantSens = () => {
       title="Le tourisme rural, une opportunité pour les soignants en quête de sens"
       content={articleContent}
       author="Nephos"
-      date={new Date()}
+      date={new Date("2025-06-19")}
       imageUrl="/images/articles/tourisme-rural-soignants-sens.webp"
       altText="Un soignant contemplant un paysage rural paisible, illustrant une pause ressourçante en dehors de son cadre habituel"
+      ariaLabel="Illustration d'un soignant contemplant un paysage rural paisible, illustrant une pause ressourçante en dehors de son cadre habituel"
       tags={["Santé et prévention"]}
     />
   );
