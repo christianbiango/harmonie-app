@@ -70,15 +70,15 @@ const TemoignagesMobiliteRurale = () => {
   <p class="my-2">
     Depuis cette expérience, il s’est installé à mi-temps dans une structure rurale où il continue d’exercer avec enthousiasme. "Je ne me suis jamais senti aussi aligné."
   </p>
-  <img 
-    src="/images/articles/maison-de-sante-rurale.webp" 
-    alt="Trois professionnels de santé discutant devant une maison de santé en zone rurale, entourée de collines et de nature"
-    role="img" 
-    aria-label="Illustration de soignants installés en maison de santé rurale, échangeant dans un environnement apaisant" 
-    width="600" 
-    height="400"
-    class="mx-auto rounded-sm"
-  />
+  <div role="img" aria-label="Illustration de soignants installés en maison de santé rurale, échangeant dans un environnement apaisant">
+    <img 
+      src="/images/articles/maison-de-sante-rurale.webp" 
+      alt="Trois professionnels de santé discutant devant une maison de santé en zone rurale, entourée de collines et de nature"
+      width="600" 
+      height="400"
+      class="mx-auto rounded-sm"
+    />
+  </div>
 </section>
 
 <section role="region" aria-labelledby="rural-mobility-heading">
@@ -89,15 +89,15 @@ const TemoignagesMobiliteRurale = () => {
   <p class="my-2">
     Elle offre des espaces d’expression, de créativité, et de transmission. Les soignants qui en bénéficient rapportent une augmentation de leur bien-être, une meilleure relation aux patients, et parfois même une envie de rester sur place. Elle permet aussi de tester un nouveau rythme, un autre mode d’exercice, sans engagement irréversible.
   </p>
-  <img 
-    src="/images/articles/randonnee-soignants-nature.webp" 
-    alt="Groupe de personnes, dont des soignants, faisant une randonnée dans un paysage verdoyant et montagneux"
-    role="img" 
-    aria-label="Illustration de professionnels de santé profitant d’une randonnée en pleine nature" 
-    width="600" 
-    height="400"
-    class="mx-auto rounded-sm"
-  />
+  <div role="img" aria-label="Illustration de professionnels de santé profitant d’une randonnée en pleine nature">
+    <img 
+      src="/images/articles/randonnee-soignants-nature.webp" 
+      alt="Groupe de personnes, dont des soignants, faisant une randonnée dans un paysage verdoyant et montagneux"
+      width="600" 
+      height="400"
+      class="mx-auto rounded-sm"
+    />
+  </div>
 </section>
 
 <section role="region" aria-labelledby="conclusion-heading">
@@ -116,9 +116,10 @@ const TemoignagesMobiliteRurale = () => {
       title="Témoignages : ces soignants qui ont retrouvé un équilibre grâce à la mobilité rurale"
       content={articleContent}
       author="Nephos"
-      date={new Date()}
+      date={new Date("2025-06-18")}
       imageUrl="/images/articles/temoignages-mobilite-rurale.webp"
       altText="Une soignante souriante en tenue décontractée devant un paysage vallonné"
+      ariaLabel="Illustration d'une soignante souriante en tenue décontractée devant un paysage vallonné"
       tags={["Santé et prévention"]}
     />
   );

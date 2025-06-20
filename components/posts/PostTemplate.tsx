@@ -9,6 +9,7 @@ interface PostTemplateProps {
   imageUrl?: string;
   tags?: string[];
   altText?: string;
+  ariaLabel?: string;
 }
 
 const PostTemplate: React.FC<PostTemplateProps> = ({
@@ -17,6 +18,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({
   author,
   date,
   imageUrl,
+  ariaLabel,
   tags = [],
   altText,
 }) => {
@@ -57,7 +59,11 @@ const PostTemplate: React.FC<PostTemplateProps> = ({
 
       {/* Image principale */}
       {imageUrl && (
-        <div className="relative w-fulL mb-8">
+        <div
+          className="relative w-fulL mb-8"
+          role="img"
+          aria-label={ariaLabel || altText || ""}
+        >
           <Image
             src={imageUrl}
             alt={altText || ""}

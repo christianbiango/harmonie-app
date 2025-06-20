@@ -107,9 +107,10 @@ const SejoursRurauxBurnoutSoignants = () => {
       title="Comment les séjours en milieu rural peuvent aider à prévenir le burn-out chez les soignants ?"
       content={articleContent}
       author="Nephos"
-      date={new Date()}
+      date={new Date("2025-06-14")}
       imageUrl="/images/articles/sejours-ruraux-burnout-soignants.webp"
       altText="Deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
+      ariaLabel="Illustration de deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
       tags={["Santé et prévention"]}
     />
   );

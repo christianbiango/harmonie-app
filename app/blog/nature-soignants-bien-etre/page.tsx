@@ -43,15 +43,15 @@ const NatureSoignantsBienEtre = () => {
     <p class="my-2">
       Des soignants rapportent qu’après une simple journée en nature, ils ressentent un regain d'inspiration, un allégement du poids mental et une clarté accrue dans leurs prises de décision.
     </p>
-    <img 
-      src="/images/articles/promenade-soignants-foret.webp" 
-      alt="Groupe de soignants marchant dans une forêt en automne, profitant d’un moment de détente en pleine nature"
-      role="img" 
-      aria-label="Illustration de professionnels de santé marchant ensemble dans un cadre naturel pour se ressourcer" 
-      width="600" 
-      height="400"
-      class="mx-auto rounded-sm"
-    />
+    <div role="img" aria-label="Illustration de professionnels de santé marchant ensemble dans un cadre naturel pour se ressourcer"> 
+      <img 
+        src="/images/articles/promenade-soignants-foret.webp" 
+        alt="Groupe de soignants marchant dans une forêt en automne, profitant d’un moment de détente en pleine nature"
+        width="600" 
+        height="400"
+        class="mx-auto rounded-sm"
+      />
+    </div>
 
   </section>
 
@@ -79,15 +79,15 @@ const NatureSoignantsBienEtre = () => {
   <p class="my-2">
     Les collectivités qui soutiennent ce type d’initiatives voient également des effets positifs sur l’attractivité des postes en zone rurale, la cohésion d’équipe, et la réduction du turn-over.
   </p>
-  <img 
-    src="/images/articles/jardinage-hopital-soignants.webp" 
-    alt="Groupe de soignants marchant dans une forêt en automne, profitant d’un moment de détente en pleine nature"
-    role="img" 
-    aria-label="Illustration de professionnels de santé marchant ensemble dans un cadre naturel pour se ressourcer" 
-    width="600" 
-    height="400"
-    class="mx-auto rounded-sm"
-  />
+  <div role="img" aria-label="Illustration de professionnels de santé marchant ensemble dans un cadre naturel pour se ressourcer">
+    <img 
+      src="/images/articles/jardinage-hopital-soignants.webp" 
+      alt="Groupe de soignants marchant dans une forêt en automne, profitant d’un moment de détente en pleine nature"
+      width="600" 
+      height="400"
+      class="mx-auto rounded-sm"
+    />
+  </div>
 </section>
 
 <section role="region" aria-labelledby="conclusion-heading">
@@ -106,9 +106,10 @@ const NatureSoignantsBienEtre = () => {
       title="Comment la nature améliore le bien-être des soignants au quotidien ?"
       content={articleContent}
       author="Nephos"
-      date={new Date()}
+      date={new Date("2025-06-15")}
       imageUrl="/images/articles/nature-soignants-bien-etre.webp"
       altText="Un soignant assis sur une souche d'arbre, regardant un paysage de montagne au coucher du soleil"
+      ariaLabel="Illustration d'un soignant assis sur une souche d'arbre, regardant un paysage de montagne au coucher du soleil"
       tags={["Santé et prévention"]}
     />
   );
