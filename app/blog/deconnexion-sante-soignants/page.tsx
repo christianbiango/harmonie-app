@@ -38,16 +38,15 @@ const DeconnexionSanteSoignants = () => {
     <p class="my-2">
       Les neurosciences le confirment : l'alternance entre activité et repos stimule la créativité, la concentration et la stabilité émotionnelle. Les soignants qui intègrent des temps de récupération dans leur agenda se montrent plus résilients face aux aléas du quotidien.
     </p>
-    <img 
-      src="/images/articles/pause-infirmiere.webp" 
-      alt="Une professionnelle de santé en tenue médicale prenant une pause café, assise près d'une fenêtre"
-      role="img" 
-      aria-label="Illustration d'une professionnelle de santé en pause, incarnant le besoin de déconnexion" 
-      width="600" 
-      height="400"
-      class="mx-auto rounded-sm"
-    />
-
+    <div role="img" aria-label="Illustration d'une professionnelle de santé en pause, incarnant le besoin de déconnexion">
+      <img 
+        src="/images/articles/pause-infirmiere.webp" 
+        alt="Une professionnelle de santé en tenue médicale prenant une pause café, assise près d'une fenêtre"
+        width="600" 
+        height="400"
+        class="mx-auto rounded-sm"
+      />
+    </div>
   </section>
 
 <section role="region" aria-labelledby="formats-heading">
@@ -76,15 +75,15 @@ const DeconnexionSanteSoignants = () => {
   <p class="my-2">
     Des retours d’expérience montrent que les professionnels qui s’accordent régulièrement un temps de déconnexion démontrent une meilleure rétention dans leur poste, une satisfaction professionnelle accrue, et même une diminution du recours aux médicaments anxiolytiques.
   </p>
-  <img 
-    src="/images/articles/seance-yoga-soignants.webp" 
-    alt="Professionnels de santé pratiquant une séance de yoga en plein air, assis en tailleur sur des tapis"
-    role="img" 
-    aria-label="Illustration de soignants méditant dans la nature pour favoriser leur bien-être mental" 
-    width="600" 
-    height="400"
-    class="mx-auto rounded-sm"
-  />
+  <div role="img" aria-label="Illustration de soignants méditant dans la nature pour favoriser leur bien-être mental">
+    <img 
+      src="/images/articles/seance-yoga-soignants.webp" 
+      alt="Professionnels de santé pratiquant une séance de yoga en plein air, assis en tailleur sur des tapis"
+      width="600" 
+      height="400"
+      class="mx-auto rounded-sm"
+    />
+  </div>
 </section>
 
 <section role="region" aria-labelledby="conclusion-heading">
@@ -103,10 +102,11 @@ const DeconnexionSanteSoignants = () => {
       title="Le rôle du temps de déconnexion pour la santé mentale des professionnels de santé"
       content={articleContent}
       author="Nephos"
-      date={new Date()}
+      date={new Date("2025-06-14")}
       imageUrl="/images/articles/deconnexion-sante-soignants.webp"
       altText="Deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
       tags={["Santé et prévention"]}
+      ariaLabel="Illustration de deux soignants marchant dans une prairie ensoleillée, symbole de ressourcement en milieu rural"
     />
   );
 };
