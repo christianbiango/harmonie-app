@@ -1,4 +1,4 @@
-import { ThemeSwitcher } from "@/components/theme-switcher";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import Link from "next/link";
@@ -88,6 +88,7 @@ export default function RootLayout({
             </div>
           </main>
         </ThemeProvider>
+        <GoogleAnalytics gaId={env.GA_TRACKING_ID} />
       </body>
     </html>
   );
