@@ -39,52 +39,72 @@ export default function Login() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex-1 flex flex-col min-w-64"
+      className="flex flex-col min-w-64 max-w-64 mx-auto"
     >
-      <h1 className="text-2xl font-medium">Connexion</h1>
-      <p className="text-sm text-foreground">
-        Pas de compte?{" "}
-        <Link className="text-foreground font-medium underline" href="/sign-up">
-          S&apos;inscrire
-        </Link>
-      </p>
-      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+      <img
+        src="/images/logo/nephos-logo.svg"
+        alt="Logo de la plateforme digitale Nephos"
+        aria-label="Logo de la plateforme digitale Nephos"
+        width={80}
+        height={80}
+        className="mx-auto my-4"
+      />
+      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-nephos-gray">
         {message && <FormMessage message={message} />}
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email" className="hidden md:block">
+          Email
+        </Label>
         <Input
           {...register("email")}
-          placeholder="johndoe@gmail.com"
+          placeholder="E-mail"
           data-testid="login-email"
+          className="bg-nephos-light-bg"
         />
         {errors.email && (
           <p className="text-sm text-red-500">{errors.email.message}</p>
         )}
-        <div className="flex justify-between items-center">
-          <Label htmlFor="password">Mot de passe</Label>
-          <Link
-            className="text-xs text-foreground underline"
-            href="/forgot-password"
+        <div>
+          <Label
+            htmlFor="password"
+            className="text-nephos-gray hidden md:block"
           >
-            Mot de passe oublié?
-          </Link>
+            Mot de passe
+          </Label>
         </div>
         <Input
           type="password"
           {...register("password")}
           placeholder="Mot de passe"
           data-testid="login-password"
+          className="bg-nephos-light-bg mb-0"
         />
         {errors.password && (
           <p className="text-sm text-red-500">{errors.password.message}</p>
         )}
+        <Link
+          className="text-xs underline text-nephos-gray text-right"
+          href="/forgot-password"
+        >
+          Mot de passe oublié?
+        </Link>
         <SubmitButton
           type="submit"
           pendingText="Connexion..."
           disabled={isSubmitting}
           data-testid="login-submit-button"
+          className="bg-nephos-primary"
         >
-          Connexion
+          Se connecter
         </SubmitButton>
+        <p className="text-sm text-center">
+          Je n&apos;ai pas de compte ?{" "}
+          <Link
+            className="text-foreground font-medium underline text-nephos-primary-dark"
+            href="/sign-up"
+          >
+            S&apos;inscrire
+          </Link>
+        </p>
       </div>
     </form>
   );
