@@ -65,23 +65,11 @@ export default function RootLayout({
         >
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-15 items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                  <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>
-                      <img
-                        src="/images/logo/nephos-logo-baseline.svg"
-                        alt="Logo de la plateforme digitale Nephos"
-                        role="img"
-                        aria-label="Logo de la plateforme digitale Nephos"
-                        width={80}
-                        height={80}
-                      />
-                    </Link>
-                    <AuthButton></AuthButton>
-                  </div>
+              <div className="w-full flex justify-center h-16 bg-nephos-primary-dark px-6 py-16">
+                <div className="w-4/5 flex justify-center items-center text-sm">
+                  <AuthButton></AuthButton>
                 </div>
-              </nav>
+              </div>
               <div className="flex flex-col gap-20 max-w-5xl p-5">
                 {children}
               </div>

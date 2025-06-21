@@ -63,6 +63,7 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        huge: "2029px",
       },
       keyframes: {
         "accordion-down": {
