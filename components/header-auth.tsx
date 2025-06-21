@@ -11,8 +11,25 @@ export default async function AuthButton() {
   } = await supabase.auth.getUser();
 
   return user ? (
-    <div className="flex items-center gap-4">
-      Hey, {user.email}!
+    <div className="w-full flex items-center justify-between gap-4  ">
+      <nav>
+        <div className="flex gap-6 items-center text-sm text-white">
+          <Link href="/explorer">Explorer</Link>
+          <Link href="/favoris">Favoris</Link>
+          <Link href="/infos">Infos</Link>
+          <Link href="/compte">Compte</Link>
+        </div>
+      </nav>
+      <Link href={"/"}>
+        <div role="img" aria-label="Logo de la plateforme digitale Nephos">
+          <img
+            src="/images/logo/nephos-logo-baseline-white.svg"
+            alt="Logo de la plateforme digitale Nephos"
+            width={80}
+            height={80}
+          />
+        </div>
+      </Link>
       <form action={signOutAction}>
         <Button type="submit" variant={"outline"}>
           Déconnexion
