@@ -16,7 +16,7 @@ export default function Header() {
       </div>
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-white text-center px-5">
         <div className="max-w-4xl mx-auto flex flex-col justify-center">
-          <h1 className="text-2xl md:text-5xl leading-tight mb-5 flex flex-col gap-2 font-semibold relative">
+          <h1 className="text-2xl md:text-5xl lg:flex-row leading-tight mb-5 flex flex-col gap-2 font-semibold relative">
             <Image
               src="/images/homepage/quote.svg"
               alt="Guillemet"
@@ -26,16 +26,12 @@ export default function Header() {
               className="mx-auto w-7 h-7 md:w-10 md:h-10 absolute -top-3 -left-9 md:-left-[50px] md:-top-[30px]"
             />
             <span>Soigner autrement,</span>
-            <span className="relative inline-block">
-              vivre pleinement.
-              <span className="absolute -right-8 bottom-1 w-6 h-6">
-                <Image
-                  src="/images/homepage/bluecircle.svg"
-                  alt="Cercle bleu"
-                  width={24}
-                  height={24}
-                  className="w-full h-full"
-                />
+            <span className="inline-block">
+              <span>
+                vivre{" "}
+                <span className="bg-[url(/images/homepage/bluecircle.svg)] bg-no-repeat bg-center bg-contain p-4">
+                  pleinement
+                </span>
               </span>
             </span>
           </h1>
