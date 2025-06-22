@@ -53,6 +53,7 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         nephos: {
+          bgPrimary: "#FFF9EE",
           gray: "#61708A",
           "light-bg": "#F0F2F5",
           primary: "#0A3678",
