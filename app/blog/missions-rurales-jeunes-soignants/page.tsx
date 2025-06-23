@@ -6,7 +6,7 @@ export const metadata = {
     "Pourquoi choisir une mission temporaire en milieu rural quand on est jeune soignant ?",
   description:
     "Missions rurales : une opportunité unique pour les jeunes soignants en quête d’expérience, d’équilibre et de sens. Découvrez pourquoi ces expériences séduisent de plus en plus. ",
-  keywords: ["Santé et prévention"],
+  keywords: ["Mobilité des soignants & Engagement rural"],
 };
 
 const MissionsRuralesJeunesSoignants = () => {
@@ -138,7 +138,7 @@ const MissionsRuralesJeunesSoignants = () => {
       date={new Date("2025-06-21")}
       imageUrl="/images/articles/missions-rurales-jeunes-soignants.webp"
       altText="Un jeune soignant accueillant des patients dans une petite maison de santé rurale, illustrant la mission temporaire en campagne"
-      tags={["Santé et prévention"]}
+      tags={["Mobilité des soignants & Engagement rural"]}
       ariaLabel="Illustration d'un jeune soignant accueillant des patients dans une petite maison de santé rurale, illustrant la mission temporaire en campagne"
     />
   );
