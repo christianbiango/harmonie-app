@@ -6,7 +6,7 @@ export const metadata = {
     "Les bénéfices méconnus de la mobilité professionnelle pour les soignants libéraux",
   description:
     "Découvrez comment la mobilité professionnelle peut enrichir le parcours des soignants libéraux et améliorer leur qualité de vie au travail.",
-  keywords: ["Santé et prévention"],
+  keywords: ["Mobilité des soignants & Lutte contre les déserts médicaux"],
 };
 
 const MobiliteSoignantsLiberaux = () => {
@@ -136,7 +136,7 @@ const MobiliteSoignantsLiberaux = () => {
       imageUrl="/images/articles/soignant-liberal-en-depart.webp"
       altText="Soignant libéral en partance pour une mission courte"
       ariaLabel="Illustration d’un soignant libéral préparant une valise pour partir en mission temporaire"
-      tags={["Santé et prévention"]}
+      tags={["Mobilité des soignants & Lutte contre les déserts médicaux"]}
     />
   );
 };
