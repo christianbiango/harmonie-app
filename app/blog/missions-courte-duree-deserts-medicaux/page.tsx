@@ -6,7 +6,7 @@ export const metadata = {
     "Comment les missions de courte durée favorisent la lutte contre les déserts médicaux ?",
   description:
     "Découvrir comment les missions médicales temporaires dynamisent l’accès aux soins dans les territoires ruraux en manque de professionnels de santé",
-  keywords: ["Santé et prévention"],
+  keywords: ["Mobilité des soignants & Lutte contre les déserts médicaux"],
 };
 
 const MissionsCourteDureeDesertsMedicaux = () => {
@@ -142,7 +142,7 @@ const MissionsCourteDureeDesertsMedicaux = () => {
       imageUrl="/images/articles/missions-courte-duree-deserts-medicaux.webp"
       altText="Soignant en déplacement pour une mission de courte durée dans un territoire en manque de médecins"
       ariaLabel="Illustration d’un soignant arrivant pour une mission temporaire dans un village rural"
-      tags={["Santé et prévention"]}
+      tags={["Mobilité des soignants & Lutte contre les déserts médicaux"]}
     />
   );
 };
