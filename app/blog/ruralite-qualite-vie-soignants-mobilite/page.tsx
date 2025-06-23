@@ -9,7 +9,7 @@ export const metadata = {
   keywords: ["Ruralité & qualité de vie"],
 };
 
-const MobiliteSoignantsLiberaux = () => {
+const RuraliteQualiteVieSoignantsMobilite = () => {
   const articleContent = `
   <section aria-labelledby="rethinking-balance-wellbeing-heading">
     <h2 id="rethinking-balance-wellbeing-heading" class="my-6 font-bold text-3xl">Repenser l’équilibre entre engagement et bien-être</h2>
@@ -100,4 +100,4 @@ const MobiliteSoignantsLiberaux = () => {
     />
   );
 };
-export default MobiliteSoignantsLiberaux;
+export default RuraliteQualiteVieSoignantsMobilite;

@@ -11,8 +11,8 @@ export const metadata = {
 
 const TravaillerAuVertFideliserSoignantsTerritoires = () => {
   const articleContent = `
-  <section aria-labelledby="rethinking-balance-wellbeing-heading">
-    <h2 id="rethinking-balance-wellbeing-heading" class="my-6 font-bold text-3xl">Plus qu’un lieu d’exercice, un cadre de vie choisi</h2>
+  <section aria-labelledby="chosen-living-environment-heading">
+    <h2 id="chosen-living-environment-heading" class="my-6 font-bold text-3xl">Plus qu’un lieu d’exercice, un cadre de vie choisi</h2>
     <p class="my-2">
         Les difficultés de recrutement et de fidélisation des soignants dans les territoires ne sont pas nouvelles. Mais une dynamique nouvelle émerge : celle d’un lien fort entre qualité de vie et stabilité professionnelle.
     </p>
@@ -20,8 +20,8 @@ const TravaillerAuVertFideliserSoignantsTerritoires = () => {
         Proposer un cadre naturel, paisible et porteur de sens devient un argument concret pour attirer, mais surtout fidéliser, les professionnels de santé. Les missions rurales temporaires s’inscrivent parfaitement dans cette logique, en permettant une immersion progressive.
     </p>
   </section>
-  <section role="region" aria-labelledby="soothing-environment-for-care-heading">
-    <h2 id="soothing-environment-for-care-heading" class="my-6 font-bold text-3xl">Un environnement qui répond aux besoins profonds des soignants</h2>
+  <section role="region" aria-labelledby="caregiver-needs-environment-heading">
+    <h2 id="caregiver-needs-environment-heading" class="my-6 font-bold text-3xl">Un environnement qui répond aux besoins profonds des soignants</h2>
     <p class="my-2">
       Dans un contexte de surcharge et de pression constante, les soignants recherchent :
     </p>
@@ -45,8 +45,8 @@ const TravaillerAuVertFideliserSoignantsTerritoires = () => {
     </div>
   </section>
 
-  <section role="region" aria-labelledby="aligned-professional-life-heading">
-    <h2 id="aligned-professional-life-headingg" class="my-6 font-bold text-3xl">Un levier de fidélisation durable</h2>
+  <section role="region" aria-labelledby="long-term-retention-lever-heading">
+    <h2 id="long-term-retention-lever-heading" class="my-6 font-bold text-3xl">Un levier de fidélisation durable</h2>
     <p class="my-2">
       Les professionnels qui expérimentent une mission rurale dans un cadre agréable sont nombreux à souhaiter prolonger l’expérience. Ce qui les convainc :
     </p>
