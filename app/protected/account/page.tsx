@@ -13,7 +13,7 @@ export default function AccountPage() {
             <Link href="/" className="p-2">
               <ArrowLeft className="h-6 w-6 text-[#172C75]" />
             </Link>
-            <h2 className="text-xl font-bold text-[#172C75] -ml-8">
+            <h2 className="text-xl font-bold -ml-8">
               Mon compte
             </h2>
             <Link
@@ -38,7 +38,7 @@ export default function AccountPage() {
               <div className="relative w-20 h-20">
                 <div className="absolute inset-0 rounded-full bg-teal-400 p-0.5 border-2 border-white">
                   <Image
-                    src="/images/homepage/woman.png" // Placeholder
+                    src="https://gqvcwvrannnmuyyyfvqx.supabase.co/storage/v1/object/public/nephos-blog/account/doctor-account.png" // Placeholder
                     alt="Jean Delahut"
                     width={80}
                     height={80}
