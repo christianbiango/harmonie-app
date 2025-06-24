@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Login from "@/app/(auth-pages)/sign-in/page";
 import { Message } from "@/components/form-message";
-import { signInAction } from "@/app/actions";
+import { signInAction } from "@/app/(actions)/auth";
 import { createSignInFormData } from "@/utils/tests/auth";
 
 // Mock supabase server client

@@ -1,9 +1,14 @@
+"use client";
+
+interface SearchResult {
+  id: number;
+  name: string;
+  address: string;
+  description: string;
+}
+
 export default function Home() {
   return (
-    <>
-      <main className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
-        Nephos
-      </main>
-    </>
+    <main>pls login</main>
   );
 }

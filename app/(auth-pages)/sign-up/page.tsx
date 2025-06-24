@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { signUpAction } from "@/app/actions";
+import { signUpAction } from "@/app/(actions)/auth";
 
 export default function Signup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
