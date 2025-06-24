@@ -67,8 +67,6 @@ export const fetchPaginatedAction = async (
     .range(start, end)
     .order('published_at', { ascending: false });
 
-    console.log("DATA", data)
-
   if (error) {
     console.error('Error fetching data:', error);
     return null;

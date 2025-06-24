@@ -3,23 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer>
-      <div className="relative bg-nephos-blue text-white pt-10 pb-10 text-center overflow-hidden">
-      {/* SVG Curve */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none" style={{ height: 60 }}>
-        <svg
-          viewBox="0 0 1440 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,60 Q720,0 1440,60 L1440,0 L0,0 Z"
-            fill="#FFF9EE"
-          />
-        </svg>
-      </div>
-      {/* CONTENU PRINCIPAL */}
+      <div className="relative bg-nephos-blue [clip-path:ellipse(110%_90%_at_50%_100%)] text-white pt-10 pb-10 text-center overflow-hidden">
       <div className="max-w-3xl mx-auto px-4 mt-10 relative z-10">
         <p className="text-lg italic relative">
           <span className="text-cyan-400 text-3xl font-bold mr-2">“</span>

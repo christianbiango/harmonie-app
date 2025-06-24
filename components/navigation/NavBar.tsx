@@ -13,16 +13,12 @@ export default function Navbar({ loggedIn }: NavBarProps) {
       <nav className="fixed top-0 left-0 w-full text-white overflow-hidden z-50 min-h-[80px]">
         {/* BG arrondi - mobile only */}
         <div
-          className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center sm:hidden"
-          style={{
-            backgroundImage: "url('/images/nav/nav-round.svg')",
-            backgroundSize: "100% 100%",
-          }}
+          className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center sm:hidden bg-blue-500 [clip-path:ellipse(100%_100%_at_50%_0)]"
         />
 
         {/* NAV CONTENT */}
         <div
-          className="mx-auto flex items-center justify-end px-4 py-8 md:py-10 relative z-10 md:bg-[url('/images/nav/nav-round-desktop.svg')] md:bg-[length:100%_100%] md:bg-no-repeat"
+          className="mx-auto flex items-center justify-end px-4 py-8 md:py-10 relative z-10 bg-nephos-blue [clip-path:ellipse(100%_100%_at_50%_0)]"
         >
           {/* MENU - Desktop only */}
           {loggedIn && <nav className="hidden md:flex gap-6 items-center font-medium text-sm">

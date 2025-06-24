@@ -9,6 +9,6 @@ interface SearchResult {
 
 export default function Home() {
   return (
-    <div>pls login</div>
+    <main>pls login</main>
   );
 }

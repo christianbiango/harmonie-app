@@ -34,7 +34,7 @@ export const TripRecommandations = async () => {
         style={{ scrollSnapType: "x mandatory" }}
       >
         {offers.map((offer) => (
-          <Link href={`protected/offres/${offer.id}`}>
+          <Link href={`protected/offres/${offer.id}`} key={offer.id}>
           <Card
             key={offer.id}
             imageSrc={offer.image_url} // fallback if no image

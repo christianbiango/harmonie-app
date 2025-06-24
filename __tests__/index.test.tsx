@@ -8,6 +8,6 @@ describe("Home", () => {
 
     const mainElement = screen.getByRole("main");
 
-    expect(mainElement).toHaveTextContent(/Nephos/i);
+    expect(mainElement).toHaveTextContent(/pls login/i);
   });
 });

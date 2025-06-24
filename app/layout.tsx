@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/navigation/Footer";
 
 const defaultUrl = env.VERCEL_URL
   ? `https://${env.VERCEL_URL}`
@@ -69,6 +70,7 @@ export default async function RootLayout({
         >
          <Navbar loggedIn={isLoggedIn} />
           <div>{children}</div>
+          <Footer/>
         </ThemeProvider>
         <GoogleAnalytics gaId={env.GA_TRACKING_ID} />
       </body>

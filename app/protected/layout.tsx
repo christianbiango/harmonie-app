@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Navbar from "@/components/navigation/NavBar";
 import { ReactNode } from "react";
+import Footer from "@/components/navigation/Footer";
 
 export default async function ProtectedLayout({ children }: { children: ReactNode }) {
   const supabase = await createClient();
@@ -16,6 +17,7 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
     <>
       <Navbar loggedIn={true} />
       {children}
+      <Footer/>
     </>
   );
 }

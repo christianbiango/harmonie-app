@@ -10,7 +10,6 @@ type Params = {
 const postCache = new Map<string, any>()
 
 async function fetchPostCached(slug: string) {
-  console.log("slug", slug)
   if (postCache.has(slug)) {
     return postCache.get(slug)
   }
@@ -19,8 +18,8 @@ async function fetchPostCached(slug: string) {
   return post
 }
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { slug } = params
+export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
+  const { slug } = await params
 
   const post = await fetchPostCached(slug)
 
@@ -43,8 +42,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   }
 }
 
-export default async function PostPage({ params }: { params: Params }) {
-  const { slug } = params
+export default async function PostPage({ params }: { params: Promise<Params> }) {
+  const { slug } = await params
 
   const post = await fetchPostCached(slug)
 
