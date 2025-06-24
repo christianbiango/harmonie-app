@@ -6,6 +6,8 @@ export const env = {
     NEXT_PUBLIC_SUPABASE_ANON_KEY:
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "",
     SUPABASE_CONNECTION: process.env.SUPABASE_CONNECTION || "",
+    NEXT_PRIVATE_SUPABASE_API_KEY:
+      process.env.NEXT_PRIVATE_SUPABASE_API_KEY || "",
   },
   GA_TRACKING_ID: process.env.NEXT_PUBLIC_GA_ID || "",
 };
