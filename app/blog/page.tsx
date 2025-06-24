@@ -1,4 +1,4 @@
-import { fetchAllAction } from "@/app/(actions)/shared";
+import { fetchPaginatedAction } from "@/app/(actions)/shared";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,14 +22,22 @@ type Post = {
   published: boolean;
 };
 
-export default async function BlogPage() {
-  const posts = await fetchAllAction("posts");
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const currentPage = Number(searchParams.page) || 1;
+  const postsPerPage = 10;
 
-  if (!posts) {
+  const result = await fetchPaginatedAction("posts", currentPage, postsPerPage);
+
+  if (!result?.data) {
     return <p className="text-center">Impossible de charger les articles.</p>;
   }
 
-  const publishedPosts: Post[] = posts.filter((post: Post) => post.published);
+  const publishedPosts: Post[] = result.data.filter((post: Post) => post.published);
+  const { total, totalPages } = result.metadata;
 
   return (
     <div className="max-w-7xl mx-auto py-10 px-4">
@@ -68,6 +76,41 @@ export default async function BlogPage() {
           </Card>
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center gap-4 mt-12">
+          <Button
+            variant="outline"
+            disabled={currentPage <= 1}
+            asChild
+          >
+            <Link
+              href={`/blog?page=${currentPage - 1}`}
+              className={currentPage <= 1 ? 'pointer-events-none opacity-50' : ''}
+            >
+              Précédent
+            </Link>
+          </Button>
+          
+          <span className="text-sm">
+            Page {currentPage} sur {totalPages}
+          </span>
+
+          <Button
+            variant="outline"
+            disabled={currentPage >= totalPages}
+            asChild
+          >
+            <Link
+              href={`/blog?page=${currentPage + 1}`}
+              className={currentPage >= totalPages ? 'pointer-events-none opacity-50' : ''}
+            >
+              Suivant
+            </Link>
+          </Button>
+        </div>
+      )}
     </div>
   );
 } 
