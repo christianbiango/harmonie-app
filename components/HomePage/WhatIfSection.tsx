@@ -8,21 +8,21 @@ export const WhatIfSection = () => {
       </h2>
 
       <div className="space-y-4">
-        <div className="flex items-center bg-transparent pr-4 rounded-lg border border-nephos-primary">
+        <div className="flex items-center bg-nephos-lightBeige pr-4 rounded-lg border border-nephos-primary">
           <div className="bg-blue-800 p-3 rounded-lg mr-4">
             <MapPin className="text-white" />
           </div>
           <span className="text-gray-700">Je choisis un lieu de mission</span>
         </div>
 
-        <div className="flex items-center bg-transparent pr-4 rounded-lg border border-nephos-primary">
+        <div className="flex items-center bg-nephos-lightBeige pr-4 rounded-lg border border-nephos-primary">
           <div className="bg-blue-800 p-3 rounded-lg mr-4">
             <Building className="text-white" />
           </div>
           <span className="text-gray-700">Je suis logé·e et accompagné·e</span>
         </div>
 
-        <div className="flex items-center bg-transparent pr-4 rounded-lg border border-nephos-primary">
+        <div className="flex items-center bg-nephos-lightBeige pr-4 rounded-lg border border-nephos-primary">
           <div className="bg-blue-800 p-3 rounded-lg mr-4">
             <Users className="text-white" />
           </div>

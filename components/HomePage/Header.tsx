@@ -3,7 +3,7 @@ import { BlueButton } from "../BlueButtton";
 
 export default function Header() {
   return (
-    <header className="relative w-full min-h-[310px] md:min-h-[600px] overflow-hidden flex flex-col justify-center">
+    <header className="mt-10 relative w-full min-h-[310px] md:min-h-[600px] overflow-hidden flex flex-col justify-center">
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <Image
           src="/images/homepage/field.png"
@@ -39,7 +39,7 @@ export default function Header() {
         <p className="block text-xl md:text-2xl mt-5 opacity-90 font-light">
           Prendre soin des autres sans s&apos;oublier
         </p>
-        <div className="mt-7">
+        <div className="mt-7 hidden md:block">
           <BlueButton text="Voir les séjours" />
         </div>
       </div>

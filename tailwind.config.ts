@@ -54,10 +54,12 @@ const config = {
         },
         nephos: {
           bgPrimary: "#FFF9EE",
+          lightBeige: "#FFFBF5",
           gray: "#61708A",
           "light-bg": "#F0F2F5",
           primary: "#0A3678",
           "primary-dark": "#0D347A",
+          blue: "#172C75",
         },
       },
       borderRadius: {
