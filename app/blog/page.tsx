@@ -42,12 +42,9 @@ const infoItems = [
   },
 ];
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: { page?: string };
-}) {
-  const currentPage = Number(searchParams.page) || 1;
+export default async function BlogPage({ searchParams }: { searchParams: any }) {
+  const params = await searchParams;
+  const currentPage = Number(params.page) || 1;
   const postsPerPage = 10;
 
   const result = await fetchPaginatedAction("posts", currentPage, postsPerPage);
