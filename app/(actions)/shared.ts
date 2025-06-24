@@ -24,9 +24,22 @@ export const fetchSingleAction = async (
 
 export const fetchAllAction = async (table: string) => {
   const supabase = await createClient();
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from(table)
     .select('*');
+
+  return data;
+};
+
+export const fetchManyAction = async (
+  table: string,
+  column: string,
+  value: string | number) => {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from(table)
+    .select('*')
+    .eq(column, value);
 
   return data;
 };
@@ -53,6 +66,8 @@ export const fetchPaginatedAction = async (
     .select('*')
     .range(start, end)
     .order('published_at', { ascending: false });
+
+    console.log("DATA", data)
 
   if (error) {
     console.error('Error fetching data:', error);
