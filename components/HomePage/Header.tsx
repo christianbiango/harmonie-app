@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { BlueButton } from "../BlueButtton";
-
+import { BlueButton } from "../BlueButtton"
 export default function Header() {
   return (
     <header className="mt-10 relative w-full min-h-[310px] md:min-h-[600px] overflow-hidden flex flex-col justify-center">
