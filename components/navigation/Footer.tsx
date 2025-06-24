@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer>
@@ -30,13 +32,10 @@ export default function Footer() {
         <p className="mt-6 text-xl font-bold text-white underline underline-offset-4 decoration-cyan-400">
           0800 800 854
         </p>
-      </div>
-
-      <div className="flex justify-center gap-6 mt-6">
-        <a href="#"><i className="fab fa-facebook-f text-xl" /></a>
-        <a href="#"><i className="fab fa-instagram text-xl" /></a>
-        <a href="#"><i className="fab fa-youtube text-xl" /></a>
-        <a href="#"><i className="fab fa-linkedin-in text-xl" /></a>
+        <div className="w-full flex justify-center gap-5 mt-8 text-sm text-white/80 underline">
+          <Link href="/mentions-legales">Mention Légales</Link>
+          <Link href="/politique-de-confidentialite">Politique de confidentialité</Link>
+        </div>
       </div>
 
       </div>
