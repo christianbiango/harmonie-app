@@ -6,7 +6,7 @@ import Navbar from "@/components/navigation/NavBar";
 export default function AccountPage() {
   return (
     <>
-      <Navbar />
+      <Navbar loggedIn={true} />
       <div className="bg-[#F9F5F1] pb-24">
         <main className="px-4 py-6 pt-24">
           <div className="flex justify-between items-center mb-6">
