@@ -4,6 +4,7 @@ import { Geist } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import AuthButton from "@/components/header-auth";
+import Footer from "@/components/footer-auth";
 import { env } from "@/config/env";
 
 const defaultUrl = env.VERCEL_URL
@@ -55,8 +56,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
+    <html lang="fr" className={geistSans.className} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="bg-background text-foreground font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -65,17 +78,16 @@ export default function RootLayout({
         >
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-15 items-center">
-              <div className="w-full flex justify-center h-16 bg-nephos-primary-dark px-6 py-16">
-                <div className="w-4/5 flex justify-center items-center text-sm">
+              <div className="w-full flex justify-center h-52 bg-nephos-bluebg [clip-path:ellipse(100%_100%_at_50%_0)]">
+                <div className="w-4/5 flex justify-center items-center">
                   <AuthButton></AuthButton>
                 </div>
               </div>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
-                {children}
-              </div>
             </div>
+            <div className="flex flex-col gap-20 max-w-5xl p-5">{children}</div>
           </main>
         </ThemeProvider>
+        <Footer />
         <GoogleAnalytics gaId={env.GA_TRACKING_ID} />
       </body>
     </html>

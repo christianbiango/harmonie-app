@@ -57,6 +57,7 @@ const config = {
           "light-bg": "#F0F2F5",
           primary: "#0A3678",
           "primary-dark": "#0D347A",
+          bluebg: "#0A2E7A",
         },
       },
       borderRadius: {
@@ -78,6 +79,9 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        sans: ['"Albert Sans"', "ui-sans-serif", "system-ui"],
       },
     },
   },
