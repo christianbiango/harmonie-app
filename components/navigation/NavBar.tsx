@@ -1,13 +1,19 @@
 import Image from "next/image";
 import { Heart, Info, Search, User } from "lucide-react";
+import LogoutButton from "../SignOutButton";
+import Link from "next/link";
 
-export default function Navbar() {
+type NavBarProps = {
+  loggedIn: boolean;
+}
+
+export default function Navbar({ loggedIn }: NavBarProps) {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full text-white overflow-hidden z-50 min-h-[80px]">
         {/* BG arrondi - mobile only */}
         <div
-          className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center md:hidden"
+          className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center sm:hidden"
           style={{
             backgroundImage: "url('/images/nav/nav-round.svg')",
             backgroundSize: "100% 100%",
@@ -16,14 +22,10 @@ export default function Navbar() {
 
         {/* NAV CONTENT */}
         <div
-          className=" mx-auto flex items-center justify-between px-4 py-8 md:py-10 relative z-10"
-          style={{
-            backgroundImage: "url('/images/nav/nav-round-desktop.svg')",
-            backgroundSize: "100% 100%",
-          }}
+          className="mx-auto flex items-center justify-end px-4 py-8 md:py-10 relative z-10 md:bg-[url('/images/nav/nav-round-desktop.svg')] md:bg-[length:100%_100%] md:bg-no-repeat"
         >
           {/* MENU - Desktop only */}
-          <nav className="hidden md:flex gap-6 items-center font-medium text-sm">
+          {loggedIn && <nav className="hidden md:flex gap-6 items-center font-medium text-sm">
             <a href="#" className="hover:text-cyan-300">
               Explorer
             </a>
@@ -36,7 +38,7 @@ export default function Navbar() {
             <a href="#" className="hover:text-cyan-300">
               Compte
             </a>
-          </nav>
+          </nav>}
 
           {/* LOGO - Always centered */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-24 h-6 md:w-28 md:h-8">
@@ -49,15 +51,13 @@ export default function Navbar() {
           </div>
 
           {/* DECONNEXION - Desktop only */}
-          <div className="hidden md:block">
-            <button className="bg-white text-[#172C75] font-semibold px-4 py-1 rounded-full text-sm hover:bg-cyan-100">
-              se déconnecter
-            </button>
-          </div>
+          {loggedIn ? <div className="hidden md:block">
+            <LogoutButton className="bg-white text-[#172C75] font-semibold px-4 py-1 rounded-full text-sm hover:bg-cyan-100" />
+          </div> : <Link href="/sign-in" className="hidden md:block bg-white text-[#172C75] font-semibold px-4 py-1 rounded-full text-sm hover:bg-cyan-100">Se connecter</Link>}
         </div>
       </nav>
       {/* BOTTOM NAV - Mobile only */}
-      <nav className="fixed bottom-0 left-0 w-full bg-[#F9F5F1] border-t border-gray-200 md:hidden z-50 py-2">
+      {loggedIn && <nav className="fixed bottom-0 left-0 w-full bg-[#F9F5F1] border-t border-gray-200 md:hidden z-50 py-2">
         <div className="flex justify-around items-center h-16 text-[#172C75]">
           <a
             href="#"
@@ -88,7 +88,7 @@ export default function Navbar() {
             <span>Compte</span>
           </a>
         </div>
-      </nav>
+      </nav>}
     </>
   );
 }
