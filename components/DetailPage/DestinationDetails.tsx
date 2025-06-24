@@ -4,7 +4,6 @@ import {
   MapPin,
   Star,
   Users,
-  Calendar,
   CheckCircle,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
