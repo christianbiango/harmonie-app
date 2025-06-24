@@ -1,18 +1,13 @@
 "use client";
 
-import { BlueButton } from "@/components/BlueButtton";
-import DestinationDetails from "@/components/DestinationDetails";
-import Footer from "@/components/Footer";
+import Footer from "@/components/navigation/Footer";
 import { DependsOnYouSection } from "@/components/HomePage/DependsOnYouSection";
 import { DestinationFilters } from "@/components/HomePage/DestinationFilters";
 import DestinationSearch from "@/components/HomePage/DestinationSearch";
 import Header from "@/components/HomePage/Header";
 import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
 import { WhatIfSection } from "@/components/HomePage/WhatIfSection";
-import Navbar from "@/components/NavBar";
-import NephosCard from "@/components/NephosCard";
-import { SearchBar } from "@/components/search/SearchBar";
-import { SearchResults } from "@/components/search/SearchResults";
+import Navbar from "@/components/navigation/NavBar";
 import { useState } from "react";
 
 interface SearchResult {
@@ -27,7 +22,6 @@ export default function Home() {
 
   return (
     <>
-    <DestinationDetails/>
     <Navbar/>
       <Header />
       <main>
