@@ -18,6 +18,9 @@ export const signupSchema = z
         message: "Le prénom contient des caractères non autorisés",
       }),
     email: z.string().email({ message: "Email invalide" }),
+    rpps: z.string().regex(/^\d{11}$/, {
+      message: "Le numéro RPPS doit contenir exactement 11 chiffres",
+    }),
     password: z
       .string()
       .min(6, {

@@ -5,20 +5,45 @@ import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { signupSchema } from "@/lib/schemas/signupSchema";
+import { verifyTurnstileFormAction } from "./shared";
 
-// S'inscrire
-export const signUpAction = async (formData: FormData) => {
-  // Récupération et parsing des données
+const checkRpps = async (rpps: string) => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("rpps")
+    .select("*")
+    .eq("rpps", rpps)
+    .single();
+
+  if (error) {
+    console.error("Error fetching RPPS:", error);
+    return null;
+  }
+
+  return data;
+};
+
+export const signUpAction = async (
+  formData: FormData,
+  turnstileToken: string
+) => {
+  const isValidTurnstile = await verifyTurnstileFormAction(turnstileToken);
+
+  if (!isValidTurnstile) {
+    throw new Error("Vérification CAPTCHA échouée. Veuillez réessayer.");
+  }
+
   const firstname = formData.get("firstname")?.toString();
   const lastname = formData.get("lastname")?.toString();
+  const rpps = formData.get("rpps")?.toString();
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const confirmPassword = formData.get("confirmPassword")?.toString();
 
-  // Validation avec Zod
   const parseResult = signupSchema.safeParse({
     lastname,
     firstname,
+    rpps,
     email,
     password,
     confirmPassword,
@@ -30,12 +55,17 @@ export const signUpAction = async (formData: FormData) => {
   const {
     lastname: validatedLastName,
     firstname: validatedFirstName,
+    rpps: validatedRpps,
     email: validatedEmail,
     password: validatedPassword,
-    confirmPassword: validatedConfirmPassword,
   } = parseResult.data;
 
-  // Inscription via Supabase
+  const isValidRpps = await checkRpps(validatedRpps);
+
+  if (!isValidRpps) {
+    throw new Error("Le RPPS fourni n'est pas valide ou n'existe pas.");
+  }
+
   const supabase = await createClient();
   const origin = (await headers()).get("origin");
   const { error } = await supabase.auth.signUp({
@@ -62,7 +92,16 @@ export const signUpAction = async (formData: FormData) => {
 
 // ----------------------------------------------------------------------------
 // Se connecter
-export const signInAction = async (formData: FormData) => {
+export const signInAction = async (
+  formData: FormData,
+  turnstileToken: string
+) => {
+  const isValidTurnstile = await verifyTurnstileFormAction(turnstileToken);
+
+  if (!isValidTurnstile) {
+    throw new Error("Vérification CAPTCHA échouée. Veuillez réessayer.");
+  }
+
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const supabase = await createClient();
@@ -72,7 +111,11 @@ export const signInAction = async (formData: FormData) => {
     password,
   });
   if (error) {
-    return encodedRedirect("error", "/sign-in", error.message);
+    let errorMsg = error.message;
+    if (errorMsg.startsWith("Error:")) {
+      errorMsg = errorMsg.replace(/^Error:\s*/, "");
+    }
+    return encodedRedirect("error", "/sign-in", errorMsg);
   }
   return redirect("/protected");
 };
