@@ -1,13 +1,40 @@
 import { DestinationFilters } from "@/components/HomePage/DestinationFilters";
 import DestinationSearch from "@/components/HomePage/DestinationSearch";
 import Header from "@/components/HomePage/Header";
+import { KeyInfos } from "@/components/HomePage/KeyInfos";
 import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
 import { TripRecommandations } from "@/components/HomePage/TripRecommandations";
-import { WhatIfSection } from "@/components/HomePage/WhatIfSection";
 import Footer from "@/components/navigation/Footer";
 import Navbar from "@/components/navigation/NavBar";
+import { KeyInfoStepProps } from "@/components/shared/KeyInfoStep";
+import { MapPin, Building, Users } from "lucide-react";
 
 export default async function ProtectedPage() {
+  const steps: KeyInfoStepProps[] = [
+    { icon: MapPin, text: "Je choisis un lieu de mission" },
+    { icon: Building, text: "Je suis logé·e et accompagné·e" },
+    { icon: Users, text: "Je découvre, je soigne, je respire" },
+  ];
+
+  const womanImg = "/images/homepage/woman.png";
+  const metaCards = [
+    {
+      image: womanImg,
+      title: "Correspondance",
+      description: "Associer les professionnels aux séjours adaptés à leurs compétences et préférences."
+    },
+    {
+      image: womanImg,
+      title: "Hébergement",
+      description: "Fournir un hébergement confortable, clé en main pour tous les membres de la famille."
+    },
+    {
+      image: womanImg,
+      title: "Horaires",
+      description: "Assurer des horaires de travail structurés qui permettent du temps personnel."
+    }
+  ];
+
   return (
     <>
     <Navbar loggedIn={true}/>
@@ -23,10 +50,10 @@ export default async function ProtectedPage() {
         </div>
       </main>
       <div className="p-4">
-        <WhatIfSection />
+        <KeyInfos steps={steps} />
       </div>
       <div className="hidden md:block">
-        <MetaInfoSection />
+        <MetaInfoSection cards={metaCards} />
       </div>
       <Footer />
     </>

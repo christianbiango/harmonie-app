@@ -13,7 +13,7 @@ export default function Navbar({ loggedIn }: NavBarProps) {
       <nav className="fixed top-0 left-0 w-full text-white overflow-hidden z-50 min-h-[80px]">
         {/* BG arrondi - mobile only */}
         <div
-          className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center sm:hidden bg-blue-500 [clip-path:ellipse(100%_100%_at_50%_0)]"
+          className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center sm:hidden"
         />
 
         {/* NAV CONTENT */}

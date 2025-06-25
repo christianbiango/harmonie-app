@@ -1,11 +1,9 @@
 "use client"
 import {
-  ChevronLeft,
-  Heart,
+  CheckCircle,
   MapPin,
   Star,
-  Users,
-  CheckCircle,
+  Users
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -14,31 +12,9 @@ const DestinationDetails = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header with back button and title */}
-      <header className="sticky top-0 z-10 bg-white p-4 shadow-sm">
-        <div className="flex items-center">
-          <button onClick={() => router.back()} className="p-2 -ml-2">
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <h1 className="text-lg font-semibold mx-auto">Mios</h1>
-          <div className="w-6"></div> {/* Spacer for centering */}
-        </div>
-      </header>
 
       {/* Main content */}
       <main>
-        {/* Image gallery */}
-        <div className="relative h-64 bg-gray-200">
-          <img
-            src="/images/mios-destination.jpg"
-            alt="Mios"
-            className="w-full h-full object-cover"
-          />
-          <button className="absolute top-4 right-4 bg-white/90 p-2 rounded-full">
-            <Heart className="w-5 h-5 text-gray-700" />
-          </button>
-        </div>
-
         {/* Location and rating */}
         <div className="p-4">
           <div className="flex items-center mb-2">
