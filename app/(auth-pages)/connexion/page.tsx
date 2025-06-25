@@ -10,8 +10,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { signInAction } from "@/app/(actions)/auth";
+import TurnstileWidget from "@/components/TurnstileWidget";
+import { resetTurnstile } from "@/utils/forms";
 
 export default function Login() {
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileKey, setTurnstileKey] = useState<number>(Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
   const {
@@ -24,16 +28,22 @@ export default function Login() {
 
   const onSubmit = async (data: SignInFormType) => {
     try {
+      if (!turnstileToken) {
+        setMessage({ error: "La vérification CAPTCHA est en cours." });
+        return;
+      }
+
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
       formData.append("email", data.email);
       formData.append("password", data.password);
-      await signInAction(formData);
+      await signInAction(formData, turnstileToken);
     } catch (error) {
       setMessage({ error: "Erreur lors de la connexion." });
     } finally {
       setIsSubmitting(false);
+      resetTurnstile({ setTurnstileToken, setTurnstileKey });
     }
   };
   return (
@@ -105,6 +115,12 @@ export default function Login() {
             S&apos;inscrire
           </Link>
         </p>
+      </div>
+      <div className="hidden">
+        <TurnstileWidget
+          key={turnstileKey}
+          onVerify={(token) => setTurnstileToken(token)}
+        />
       </div>
     </form>
   );

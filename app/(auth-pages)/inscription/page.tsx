@@ -10,8 +10,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { signUpAction } from "@/app/(actions)/auth";
+import TurnstileWidget from "@/components/TurnstileWidget";
+import { resetTurnstile } from "@/utils/forms";
 
 export default function Signup() {
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileKey, setTurnstileKey] = useState<number>(Date.now());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
   const {
@@ -24,6 +28,11 @@ export default function Signup() {
 
   const onSubmit = async (data: SignupData) => {
     try {
+      if (!turnstileToken) {
+        setMessage({ error: "La vérification CAPTCHA est en cours." });
+        return;
+      }
+
       setIsSubmitting(true);
       setMessage(null);
       const formData = new FormData();
@@ -32,7 +41,8 @@ export default function Signup() {
       formData.append("email", data.email);
       formData.append("password", data.password);
       formData.append("confirmPassword", data.confirmPassword);
-      const result = await signUpAction(formData);
+      formData.append("rpps", data.rpps);
+      const result = await signUpAction(formData, turnstileToken);
       if (result.success) {
         setMessage({ success: result.success });
       } else {
@@ -41,9 +51,15 @@ export default function Signup() {
         });
       }
     } catch (error) {
-      setMessage({ error: "Une erreur est survenue lors de l'inscription." });
+      console.log("err", error);
+      setMessage({
+        error:
+          error?.toString().replace(/^Error:\s*/, "") ||
+          "Une erreur est survenue lors de l'inscription.",
+      });
     } finally {
       setIsSubmitting(false);
+      resetTurnstile({ setTurnstileToken, setTurnstileKey });
     }
   };
 
@@ -61,7 +77,7 @@ export default function Signup() {
         className="mx-auto my-4"
       />
 
-      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-nephos-gray">
+      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 text-black">
         {message && <FormMessage message={message} />}
 
         <Label htmlFor="firstname" className="hidden md:block">
@@ -86,6 +102,18 @@ export default function Signup() {
         />
         {errors.lastname && (
           <p className="text-sm text-red-500">{errors.lastname.message}</p>
+        )}
+
+        <Label htmlFor="rpps" className="hidden md:block">
+          Numéro RPPS
+        </Label>
+        <Input
+          {...register("rpps")}
+          placeholder="Numéro RPPS"
+          className="bg-nephos-light-bg"
+        />
+        {errors.rpps && (
+          <p className="text-sm text-red-500">{errors.rpps.message}</p>
         )}
 
         <Label htmlFor="email" className="hidden md:block">
@@ -131,10 +159,14 @@ export default function Signup() {
         <SubmitButton
           type="submit"
           pendingText="Inscription..."
-          disabled={isSubmitting}
+          disabled={isSubmitting || !turnstileToken}
           className="bg-nephos-primary mb-2"
         >
-          S&apos;inscrire
+          {!turnstileToken
+            ? "Vérification CAPTCHA..."
+            : isSubmitting
+              ? "Inscription..."
+              : "S'inscrire"}
         </SubmitButton>
       </div>
       <p className="text-sm text-foreground">
@@ -143,9 +175,15 @@ export default function Signup() {
           className="text-foreground font-medium underline text-nephos-primary-dark"
           href="/sign-in"
         >
-          Connecter-vous.
+          Connectez-vous.
         </Link>
       </p>
+      <div className="hidden">
+        <TurnstileWidget
+          key={turnstileKey}
+          onVerify={(token) => setTurnstileToken(token)}
+        />
+      </div>
     </form>
   );
 }

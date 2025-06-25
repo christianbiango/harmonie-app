@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Login from "@/app/(auth-pages)/sign-in/page";
+import Login from "@/app/(auth-pages)/connexion/page";
 import { Message } from "@/components/form-message";
 import { signInAction } from "@/app/(actions)/auth";
 import { createSignInFormData } from "@/utils/tests/auth";
@@ -9,6 +9,10 @@ import { createSignInFormData } from "@/utils/tests/auth";
 jest.mock("@/utils/supabase/server", () => ({
   createClient: jest.fn(),
 }));
+
+jest.mock("@/components/TurnstileWidget", () => () => (
+  <div data-testid="turnstile-widget" />
+));
 
 jest.mock("next/navigation", () => ({
   redirect: jest.fn(() => {
@@ -21,6 +25,12 @@ jest.mock("@/utils/utils", () => ({
     return { type, path, message }; // Return an object as signInAction would
   }),
 }));
+
+(global.fetch as jest.Mock) = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ success: true }),
+  })
+);
 
 describe("Login Form", () => {
   it("renders login client component", () => {
