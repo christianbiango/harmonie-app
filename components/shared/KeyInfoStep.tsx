@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react";
+
 export type KeyInfoStepProps = {
     icon: LucideIcon;
     text: string;

@@ -2,7 +2,7 @@ import { DestinationFilters } from "@/components/HomePage/DestinationFilters";
 import DestinationSearch from "@/components/HomePage/DestinationSearch";
 import Header from "@/components/HomePage/Header";
 import { KeyInfos } from "@/components/HomePage/KeyInfos";
-import { MetaInfoSection, MetaInfoCard } from "@/components/HomePage/MetaInfoSection";
+import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
 import { TripRecommandations } from "@/components/HomePage/TripRecommandations";
 import Footer from "@/components/navigation/Footer";
 import Navbar from "@/components/navigation/NavBar";

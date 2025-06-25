@@ -1,4 +1,5 @@
 import React from "react";
+import { MetaInfoCard, MetaInfoCardProps } from "../shared/MetaInfoCard";
 
 type MetaInfoSectionProps = {
   cards: MetaInfoCardProps[];

@@ -1,11 +1,9 @@
 "use client"
 import {
-  ChevronLeft,
-  Heart,
+  CheckCircle,
   MapPin,
   Star,
-  Users,
-  CheckCircle,
+  Users
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -17,7 +15,6 @@ const DestinationDetails = () => {
 
       {/* Main content */}
       <main>
-
         {/* Location and rating */}
         <div className="p-4">
           <div className="flex items-center mb-2">
