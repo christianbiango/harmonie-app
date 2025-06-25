@@ -17,7 +17,7 @@ export default function AccountPage() {
               Mon compte
             </h2>
             <Link
-              href="/protected/account/edit"
+              href="/app/account/edit"
               className="text-sm underline text-[#172C75] font-semibold"
             >
               Modifier

@@ -36,7 +36,7 @@ export default function Navbar({ loggedIn }: NavBarProps) {
 
           {/* LOGO - Always centered */}
           <Link
-            href={loggedIn ? "/protected" : "/"}
+            href={loggedIn ? "/app" : "/"}
             className="absolute left-1/2 transform -translate-x-1/2 w-24 h-6 md:w-28 md:h-8"
           >
             <Image

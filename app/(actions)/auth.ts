@@ -116,7 +116,9 @@ export const signInAction = async (
       errorMsg = errorMsg.replace(/^Error:\s*/, "");
     }
     return encodedRedirect("error", "/connexion", errorMsg);
+    return encodedRedirect("error", "/connexion", errorMsg);
   }
+  return redirect("/app");
   return redirect("/app");
 };
 
@@ -208,5 +210,6 @@ export const resetPasswordAction = async (formData: FormData) => {
 export const signOutAction = async () => {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  return redirect("/connexion");
   return redirect("/connexion");
 };
