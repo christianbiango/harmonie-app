@@ -87,7 +87,9 @@ describe("Login Form", () => {
       const formData = createSignInFormData(fakeEmail, fakePassword);
 
       // ACT
-      await expect(signInAction(formData)).rejects.toThrow("NEXT_REDIRECT");
+      await expect(signInAction(formData, "test")).rejects.toThrow(
+        "NEXT_REDIRECT"
+      );
 
       // ASSERT
       expect(signInWithPasswordMock).toHaveBeenCalledTimes(1);
@@ -96,7 +98,7 @@ describe("Login Form", () => {
         password: fakePassword,
       });
 
-      expect(redirectMock).toHaveBeenCalledWith("/protected");
+      expect(redirectMock).toHaveBeenCalledWith("/app");
     });
 
     it("calls signInWithPassword with incorrect credentials", async () => {
@@ -115,19 +117,19 @@ describe("Login Form", () => {
       const formData = createSignInFormData("test@example.com", "password123");
 
       // ACT
-      const result = await signInAction(formData);
+      const result = await signInAction(formData, "test");
 
       // ASSERT
       expect(result).toEqual({
         type: "error",
-        path: "/sign-in",
+        path: "/connexion",
         message: "Invalid credentials",
       });
 
       expect(encodedRedirectMock).toHaveBeenCalledTimes(1);
       expect(encodedRedirectMock).toHaveBeenCalledWith(
         "error",
-        "/sign-in",
+        "/connexion",
         "Invalid credentials"
       );
 
