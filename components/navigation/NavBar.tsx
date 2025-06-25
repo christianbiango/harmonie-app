@@ -54,7 +54,7 @@ export default function Navbar({ loggedIn }: NavBarProps) {
             </div>
           ) : (
             <Link
-              href="/sign-in"
+              href="/connexion"
               className="hidden md:block bg-white text-[#172C75] font-semibold px-4 py-1 rounded-full text-sm hover:bg-cyan-100"
             >
               Se connecter

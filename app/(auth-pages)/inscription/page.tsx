@@ -173,7 +173,7 @@ export default function Signup() {
         Vous avez déjà un compte?{" "}
         <Link
           className="text-foreground font-medium underline text-nephos-primary-dark"
-          href="/sign-in"
+          href="/connexion"
         >
           Connectez-vous.
         </Link>

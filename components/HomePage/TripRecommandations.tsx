@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import { fetchUserRecommendedOffers } from "@/app/(actions)/recommandedHolidays";
 import { Card } from "./TripCard";
 import { createClient } from "@/utils/supabase/server";
@@ -13,7 +13,7 @@ export const TripRecommandations = async () => {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/sign-in");
+    return redirect("/connexion");
   }
 
   const offers = await fetchUserRecommendedOffers(user.id);
@@ -35,14 +35,14 @@ export const TripRecommandations = async () => {
       >
         {offers.map((offer) => (
           <Link href={`protected/offres/${offer.id}`} key={offer.id}>
-          <Card
-            key={offer.id}
-            imageSrc={offer.image_url} // fallback if no image
-            alt={offer.name}
-            title={offer.name}
-            description={offer.description || ""}
-            showHeart={false}
-          />
+            <Card
+              key={offer.id}
+              imageSrc={offer.image_url} // fallback if no image
+              alt={offer.name}
+              title={offer.name}
+              description={offer.description || ""}
+              showHeart={false}
+            />
           </Link>
         ))}
       </div>

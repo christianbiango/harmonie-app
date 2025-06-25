@@ -93,7 +93,7 @@ export default function Login() {
         )}
         <Link
           className="text-xs underline text-nephos-gray text-right"
-          href="/forgot-password"
+          href="/mot-de-passe-oublie"
         >
           Mot de passe oublié?
         </Link>
@@ -110,7 +110,7 @@ export default function Login() {
           Je n&apos;ai pas de compte ?{" "}
           <Link
             className="text-foreground font-medium underline text-nephos-primary-dark"
-            href="/sign-up"
+            href="/inscription"
           >
             S&apos;inscrire
           </Link>
