@@ -9,7 +9,7 @@ import {
 export default function Footer() {
   return (
     <footer className="mt-10">
-      <div className="bg-nephos-bluebg text-white text-center py-10 px-4 [clip-path:ellipse(50%_100%_at_25%_100)]">
+      <div className="bg-nephos-bluebg text-white text-center py-10 px-4 [clip-path:ellipse(100%_100%_at_25%_100)]">
         <span className="block text-[48px] leading-none text-cyan-400">“</span>
         <p className="mt-4 text-[20px] leading-[24px] font-[Albert\ Sans] font-normal">
           Si votre mal être est trop important et que vous avez besoin d’une

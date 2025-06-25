@@ -78,8 +78,8 @@ export default function RootLayout({
         >
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-15 items-center">
-              <div className="w-full flex justify-center h-52 bg-nephos-bluebg [clip-path:ellipse(100%_100%_at_50%_0)]">
-                <div className="w-4/5 flex justify-center items-center">
+              <div className="w-full flex justify-center h-52">
+                <div className="w-full flex justify-center items-center bg-nephos-bluebg [clip-path:ellipse(100%_100%_at_50%_0)] px-10">
                   <AuthButton></AuthButton>
                 </div>
               </div>
