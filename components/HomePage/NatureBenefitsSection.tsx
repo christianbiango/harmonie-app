@@ -19,7 +19,7 @@ const benefits = [
 ];
 
 export const NatureBenefitsSection = () => (
-  <section className="py-8">
+  <section className="py-8" data-testid="nature-benefits-section">
     <h2 className="text-2xl font-bold text-center mb-6">
       Les bienfaits de la nature sur la santé !
     </h2>
