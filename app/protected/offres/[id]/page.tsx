@@ -1,6 +1,5 @@
 "use client";
 
-import DestinationDetails from "@/components/DetailPage/DestinationDetails";
 import { ArrowLeft, Quote } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -10,6 +9,9 @@ import { Users, MapPin, Building, Utensils, Wifi, ShowerHead, WashingMachine } f
 import { KeyDestinationInfos } from "@/components/DetailPage/KeyDestinationInfos";
 import { Card } from "@/components/HomePage/TripCard";
 import Link from "next/link";
+import { Calendar } from "@/components/ui/calendar";
+import { addDays, setMonth, setYear } from "date-fns";
+import { useState } from "react";
 
 const conditions = [
   {
@@ -86,6 +88,48 @@ const AlsoLikeSection = () => {
   );
 };
 
+const DisponibilitesSection = () => {
+  // Hardcoded available days for July 2024
+  const availableDays = [
+    4, 9, 13, 16, 20, 22, 23, 27
+  ];
+  const [selected, setSelected] = useState<Date | undefined>(undefined);
+  const month = 6; // July (0-indexed)
+  const year = 2024;
+
+  // Helper to check if a day is available
+  const isAvailable = (date: Date) =>
+    date.getMonth() === month && date.getFullYear() === year && availableDays.includes(date.getDate());
+
+  return (
+    <section className="bg-[#FFFBF5] rounded-xl p-4 mb-8 max-w-md mx-auto">
+      <h2 className="text-xl font-bold mb-4">Vérifiez les disponibilités</h2>
+      <Calendar
+        mode="single"
+        selected={selected}
+        onSelect={setSelected}
+        month={setMonth(setYear(new Date(), year), month)}
+        fromMonth={setMonth(setYear(new Date(), year), month)}
+        toMonth={setMonth(setYear(new Date(), year), month)}
+        modifiers={{ available: isAvailable }}
+        modifiersClassNames={{
+          available: "after:content-[''] after:block after:mx-auto after:mt-1 after:w-1.5 after:h-1.5 after:rounded-full after:bg-[#1DE1FC]",
+          selected: "bg-[#1DE1FC] text-white !rounded-full",
+        }}
+        className="mb-6"
+        showOutsideDays={false}
+        captionLayout="dropdown"
+        classNames={{
+          day: "relative text-base w-10 h-10 flex items-center justify-center cursor-pointer",
+          selected: "bg-[#1DE1FC] text-white !rounded-full",
+        }}
+        components={{}}
+      />
+      <button className="w-full bg-[#183B7A] text-white font-semibold py-3 rounded-lg text-base mt-2">Postuler au séjour</button>
+    </section>
+  );
+};
+
 export default function OffresDetails(){
     const router = useRouter();
 
@@ -136,7 +180,9 @@ export default function OffresDetails(){
     <section>
     <AlsoLikeSection />
     </section>
-    <DestinationDetails/>
+    <section>
+    <DisponibilitesSection />
+    </section>
 </>
     )
     

@@ -17,7 +17,6 @@ export default async function ProtectedLayout({ children }: { children: ReactNod
     <>
       <Navbar loggedIn={true} />
       {children}
-      <Footer/>
     </>
   );
 }
