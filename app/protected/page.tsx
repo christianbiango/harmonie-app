@@ -16,44 +16,23 @@ export default async function ProtectedPage() {
     { icon: Users, text: "Je découvre, je soigne, je respire" },
   ];
 
-  const womanImg = "/images/homepage/woman.png";
-  const metaCards = [
-    {
-      image: womanImg,
-      title: "Correspondance",
-      description: "Associer les professionnels aux séjours adaptés à leurs compétences et préférences."
-    },
-    {
-      image: womanImg,
-      title: "Hébergement",
-      description: "Fournir un hébergement confortable, clé en main pour tous les membres de la famille."
-    },
-    {
-      image: womanImg,
-      title: "Horaires",
-      description: "Assurer des horaires de travail structurés qui permettent du temps personnel."
-    }
-  ];
-
   return (
     <>
-    <Navbar loggedIn={true}/>
+      <Navbar loggedIn={true} />
       <Header />
       <main>
         <DestinationSearch />
         <div className="relative">
           <DestinationFilters />
           <TripRecommandations />
-          <div
-            className="pointer-events-none absolute top-0 right-0 h-full w-8 md:hidden bg-gradient-to-l from-[#FFFBF5] from-80% to-transparent z-10"
-          />
+          <div className="pointer-events-none absolute top-0 right-0 h-full w-8 md:hidden bg-gradient-to-l from-[#FFFBF5] from-80% to-transparent z-10" />
         </div>
       </main>
       <div className="p-4">
         <KeyInfos steps={steps} />
       </div>
       <div className="hidden md:block">
-        <MetaInfoSection cards={metaCards} />
+        <MetaInfoSection />
       </div>
       <Footer />
     </>
