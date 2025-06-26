@@ -5,10 +5,12 @@ import Image from "next/image";
 
 export async function DestinationSearch({
   searchTerm,
+  maxPeople,
 }: {
   searchTerm: string;
+  maxPeople?: number;
 }) {
-  const search = await searchCommunesAction(searchTerm || "");
+  const search = await searchCommunesAction(searchTerm || "", maxPeople);
   return (
     <div className="p-4 grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {search.length === 0 ? (

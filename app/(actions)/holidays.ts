@@ -108,14 +108,18 @@ export const fetchUserRecommendedOffers = async (userId: string) => {
 };
 
 // Search communes by name and return commune name, an image URL and description from holidays_offers
-export const searchCommunesAction = async (searchTerm: string) => {
+export const searchCommunesAction = async (
+  searchTerm: string,
+  maxPeople?: number
+) => {
   const supabase = await createClient();
-  const { data, error } = await supabase
+  let query = supabase
     .from("holidays_offers")
     .select(
       `
       image_url,
       description, 
+      max_people,
       cities (
         name
       )
@@ -123,6 +127,12 @@ export const searchCommunesAction = async (searchTerm: string) => {
     )
     .ilike("cities.name", `%${searchTerm}%`)
     .limit(10);
+
+  if (typeof maxPeople === "number" && !isNaN(maxPeople)) {
+    query = query.gte("max_people", maxPeople);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     throw new Error(error.message);
@@ -135,5 +145,6 @@ export const searchCommunesAction = async (searchTerm: string) => {
       name: row.cities.name,
       image_url: row.image_url,
       description: row.description,
+      max_people: row.max_people,
     }));
 };
