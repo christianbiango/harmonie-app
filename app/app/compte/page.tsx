@@ -13,7 +13,7 @@ type DoctorStatsCardProps = {
   createdAt: string;
 };
 
-export const DoctorStatsCard = ({
+const DoctorStatsCard = ({
   doctorName,
   profileImage,
   pastBookingsCount,
@@ -72,7 +72,7 @@ export const DoctorStatsCard = ({
   );
 };
 
-export const DoctorStatsCardMobile = ({
+const DoctorStatsCardMobile = ({
   doctorName,
   profileImage,
   pastBookingsCount,

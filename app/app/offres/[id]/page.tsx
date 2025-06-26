@@ -95,13 +95,13 @@ type AlsoLikeSectionProps = {
 const AlsoLikeSection = ({ similarities }: AlsoLikeSectionProps) => {
   if (!similarities || similarities.length === 0) return null;
   return (
-    <section className="p-4">
+    <div>
       <h2 className="text-2xl font-bold mb-4">
         Cela aussi pourrait vous plaire
       </h2>
       <div className="flex flex-col sm:flex-row gap-6">
         {similarities.map((similarHoliday, idx) => (
-          <div key={idx} className="flex-1 min-w-0">
+          <div key={idx} className="min-w-0">
             <Card
               imageSrc={similarHoliday.id_similar_holiday.image_url}
               alt={similarHoliday.id_similar_holiday.image_alt}
@@ -120,54 +120,9 @@ const AlsoLikeSection = ({ similarities }: AlsoLikeSectionProps) => {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
-
-// const DisponibilitesSection = () => {
-//   // Hardcoded available days for July 2024
-//   const availableDays = [4, 9, 13, 16, 20, 22, 23, 27];
-//   const [selected, setSelected] = useState<Date | undefined>(undefined);
-//   const month = 6; // July (0-indexed)
-//   const year = 2024;
-
-//   // Helper to check if a day is available
-//   const isAvailable = (date: Date) =>
-//     date.getMonth() === month &&
-//     date.getFullYear() === year &&
-//     availableDays.includes(date.getDate());
-
-//   return (
-//     <section className="bg-[#FFFBF5] rounded-xl p-4 mb-8 max-w-md mx-auto">
-//       <h2 className="text-xl font-bold mb-4">Vérifiez les disponibilités</h2>
-//       <Calendar
-//         mode="single"
-//         selected={selected}
-//         onSelect={setSelected}
-//         month={setMonth(setYear(new Date(), year), month)}
-//         fromMonth={setMonth(setYear(new Date(), year), month)}
-//         toMonth={setMonth(setYear(new Date(), year), month)}
-//         modifiers={{ available: isAvailable }}
-//         modifiersClassNames={{
-//           available:
-//             "after:content-[''] after:block after:mx-auto after:mt-1 after:w-1.5 after:h-1.5 after:rounded-full after:bg-[#1DE1FC]",
-//           selected: "bg-[#1DE1FC] text-white !rounded-full",
-//         }}
-//         className="mb-6"
-//         showOutsideDays={false}
-//         captionLayout="dropdown"
-//         classNames={{
-//           day: "relative text-base w-10 h-10 flex items-center justify-center cursor-pointer",
-//           selected: "bg-[#1DE1FC] text-white !rounded-full",
-//         }}
-//         components={{}}
-//       />
-//       <button className="w-full bg-[#183B7A] text-white font-semibold py-3 rounded-lg text-base mt-2">
-//         Postuler au séjour
-//       </button>
-//     </section>
-//   );
-// };
 
 type City = {
   id: string;
@@ -227,6 +182,24 @@ type HolidayOfferSimilaritiesId = {
   id_similar_holiday: HolidayOfferSimilarities;
 };
 
+const OfferStickyHeader = ({
+  cityName,
+  onBack,
+}: {
+  cityName: string;
+  onBack: () => void;
+}) => (
+  <div className="sticky top-0 z-10 px-8 sm:px-12 shadow-sm text-white">
+    <div className="flex items-center">
+      <button onClick={onBack} className="p-2 -ml-2">
+        <ArrowLeft className="w-8 h-8 sm:w-12 sm:h-12" />
+      </button>
+      <h1 className="text-2xl md:text-4xl font-semibold mx-auto">{cityName}</h1>
+      <div className="w-6"></div>
+    </div>
+  </div>
+);
+
 export default function OffresDetails({ params }: { params: Promise<Params> }) {
   const router = useRouter();
   const [offer, setOffer] = useState<OfferDetail>();
@@ -252,7 +225,7 @@ export default function OffresDetails({ params }: { params: Promise<Params> }) {
     <>
       {offer && (
         <>
-          <header className="mt-7 relative w-full min-h-[310px] md:min-h-[600px] overflow-hidden flex flex-col justify-start pt-[70px] md:pt-[150px]">
+          <header className="relative w-full min-h-[310px] md:min-h-[600px] sm:min-h-auto sm:min-w-auto overflow-hidden flex flex-col justify-start pt-[70px] md:pt-[150px]">
             <div className="absolute top-0 left-0 w-full h-full z-10">
               <Image
                 src={offer.image_url}
@@ -260,60 +233,55 @@ export default function OffresDetails({ params }: { params: Promise<Params> }) {
                 layout="fill"
                 objectFit="cover"
                 priority
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover md:object-contain"
               />
             </div>
-            <div className="sticky top-0 z-10 p-4 shadow-sm text-white">
-              <div className="flex items-center">
-                <button onClick={() => router.back()} className="p-2 -ml-2">
-                  <ArrowLeft className="w-6 h-6" />
-                </button>
-                <h1 className="text-lg font-semibold mx-auto">
-                  {offer.cities.name}
-                </h1>
-                <div className="w-6"></div> {/* Spacer for centering */}
-              </div>
-            </div>
+            <OfferStickyHeader
+              cityName={offer.cities.name}
+              onBack={() => router.back()}
+            />
           </header>
-          {steps && (
-            <section className="my-8">
-              <KeyDestinationInfos steps={steps} />
-            </section>
-          )}
+          <div className="px-4 sm:px-12">
+            {steps && (
+              <section className="my-8">
+                <KeyDestinationInfos steps={steps} />
+              </section>
+            )}
 
-          <section>
-            <CommentCard
-              name={`Dr. ${offer.holidays_comments.doctors_public.last_name}`}
-              date={formatDateToFrench(offer.holidays_comments.created_at)}
-              comment={offer.holidays_comments.comment}
-            />
-          </section>
-          <section>
-            <MissionCard {...offer} />
-          </section>
-          <section>
-            <EquipmentsCard {...offer} />
-          </section>
-          <section>
-            <ConditionsCard {...offer} />
-          </section>
-          <section>
-            <AlsoLikeSection
-              similarities={
-                offer.holiday_offer_similarities_id_holidays_offers_fkey
-              }
-            />
-          </section>
-          <section>
-            <DisponibilitesSection
-              offers_availability={offer.offers_availability}
-              offerId={offer.id}
-              userId={"073de563-6f4f-4304-9f2a-e8c532972265"}
-              onBookingSuccess={() =>
-                router.push(`/app/offres/${offer.id}/validation`)
-              }
-            />
-          </section>
+            <section>
+              <CommentCard
+                name={`Dr. ${offer.holidays_comments.doctors_public.last_name}`}
+                date={formatDateToFrench(offer.holidays_comments.created_at)}
+                comment={offer.holidays_comments.comment}
+              />
+            </section>
+            <section>
+              <MissionCard {...offer} />
+            </section>
+            <section>
+              <EquipmentsCard {...offer} />
+            </section>
+            <section>
+              <ConditionsCard {...offer} />
+            </section>
+            <section>
+              <AlsoLikeSection
+                similarities={
+                  offer.holiday_offer_similarities_id_holidays_offers_fkey
+                }
+              />
+            </section>
+            <section>
+              <DisponibilitesSection
+                offers_availability={offer.offers_availability}
+                offerId={offer.id}
+                userId={"073de563-6f4f-4304-9f2a-e8c532972265"}
+                onBookingSuccess={() =>
+                  router.push(`/app/offres/${offer.id}/validation`)
+                }
+              />
+            </section>
+          </div>
         </>
       )}
     </>
@@ -327,7 +295,7 @@ type CommentCardProps = {
 };
 
 const CommentCard = ({ name, date, comment }: CommentCardProps) => (
-  <div className="bg-[#183B7A] rounded-xl p-6 text-white max-w-lg">
+  <div className="bg-[#183B7A] rounded-xl p-6 text-white">
     <div className="flex items-center mb-2">
       <Image
         src="/images/homepage/quote.svg"
@@ -337,11 +305,11 @@ const CommentCard = ({ name, date, comment }: CommentCardProps) => (
         className="text-[#1DE1FC] w-8 h-8 mr-2"
       />
       <span className="font-bold text-lg">{name}</span>
-      <span className="ml-2 text-sm text-[#CFE6F9]">
-        - <span className="underline">{date}</span>
+      <span className="ml-2 text-sm text-[#FFF9EE]">
+        <span className="underline">{date}</span>
       </span>
     </div>
-    <p className="text-base text-white mt-2">{comment}</p>
+    <p className="text-base text-[#FFF9EEmt-2">{comment}</p>
   </div>
 );
 
@@ -354,31 +322,31 @@ const MissionCard = ({
   image_2_alt,
   image_3_alt,
 }: OfferDetail) => (
-  <section className="bg-[#FFFBF5] rounded-xl p-4 mb-8">
+  <section className="rounded-xl py-4 mb-8">
     <h2 className="text-lg font-bold mb-3">Découvrez votre mission</h2>
-    <div className="flex gap-2 mb-3">
+    <div className="flex md:justify-center md:gap-20 md:mb-10 md:mt-5 gap-2 mb-3">
       <Image
         src={image_url_2}
         alt={image_2_alt}
         width={110}
         height={110}
-        className="rounded-lg object-cover w-[110px] h-[110px]"
+        className="rounded-lg object-cover w-[174px] h-[195px]"
       />
       <Image
         src={image_url_3}
         alt={image_3_alt}
         width={110}
         height={110}
-        className="rounded-lg object-cover w-[110px] h-[110px]"
+        className="rounded-lg object-cover w-[174px] h-[195px]"
       />
     </div>
     <div className="mb-1">
       <span className="font-bold text-lg">{name}</span>
     </div>
-    <div className="text-sm text-gray-800 mb-1">
+    <div className="text-sm text-bold  mb-1">
       {cities.name}, {cities.region}
     </div>
-    <div className="text-sm text-gray-600">{rooms_description}</div>
+    <div className="text-sm">{rooms_description}</div>
   </section>
 );
 
@@ -399,7 +367,7 @@ const EquipmentsDialog = ({
 }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <button className="w-full bg-[#183B7A] text-white font-semibold py-2 rounded-md text-base mt-2">
+      <button className="w-full self-center max-w-[400px] bg-[#183B7A] text-white font-semibold py-2 rounded-md text-base mt-2">
         Afficher les équipements
       </button>
     </DialogTrigger>
@@ -430,7 +398,7 @@ const EquipmentsCard = ({ equipments }: OfferDetail) => {
   const fourEquipments = visibleEquipments.slice(0, 4);
 
   return (
-    <section className="bg-[#FFFBF5] rounded-xl p-4 mb-8 max-w-xs">
+    <div className="rounded-xl mb-8 flex flex-col justify-start">
       <h2 className="text-base font-bold mb-3">Équipements du logement</h2>
       <ul className="mb-4 space-y-2">
         {fourEquipments.map((equipment, index) => (
@@ -447,7 +415,7 @@ const EquipmentsCard = ({ equipments }: OfferDetail) => {
         visibleEquipments={visibleEquipments}
         equipmentIcons={equipmentIcons}
       />
-    </section>
+    </div>
   );
 };
 
@@ -479,7 +447,7 @@ const ConditionsCard = ({
   support,
   exercices_hours,
 }: OfferDetail) => (
-  <div className="bg-[#FFFBF5] rounded-xl p-4 mb-8 divide-y divide-[#E5E5E5]">
+  <div className="rounded-xl py-4 mb-8 divide-y">
     <InfoSection title="Salaire et versement" items={salary} />
     <InfoSection title="Véhicule" items={car} />
     <InfoSection title="Accompagnement" items={support} />
@@ -534,35 +502,37 @@ const DisponibilitesSection = ({
   };
 
   return (
-    <section className="bg-[#FFFBF5] rounded-xl p-4 mb-8 max-w-md mx-auto">
+    <div className="rounded-xl py-4 mb-8">
       <h2 className="text-xl font-bold mb-4">Vérifiez les disponibilités</h2>
-      <Calendar
-        mode="single"
-        selected={selected}
-        onSelect={setSelected}
-        month={setMonth(setYear(new Date(), year), month)}
-        fromMonth={setMonth(setYear(new Date(), year), month)}
-        toMonth={setMonth(setYear(new Date(), year), month)}
-        modifiers={{ available: isAvailable }}
-        modifiersClassNames={{
-          available:
-            "after:content-[''] after:block after:mx-auto after:mt-1 after:w-1.5 after:h-1.5 after:rounded-full after:bg-[#1DE1FC]",
-          selected: "bg-[#1DE1FC] text-white !rounded-full",
-        }}
-        className="mb-6"
-        showOutsideDays={false}
-        captionLayout="dropdown"
-        classNames={{
-          day: "relative text-base w-10 h-10 flex items-center justify-center cursor-pointer",
-          selected: "bg-[#1DE1FC] text-white !rounded-full",
-        }}
-      />
-      <button
-        onClick={handleBooking}
-        className="w-full bg-[#183B7A] text-white font-semibold py-3 rounded-lg text-base mt-2"
-      >
-        Postuler au séjour
-      </button>
-    </section>
+      <div className="w-full flex flex-col items-center">
+        <Calendar
+          mode="single"
+          selected={selected}
+          onSelect={setSelected}
+          month={setMonth(setYear(new Date(), year), month)}
+          fromMonth={setMonth(setYear(new Date(), year), month)}
+          toMonth={setMonth(setYear(new Date(), year), month)}
+          modifiers={{ available: isAvailable }}
+          modifiersClassNames={{
+            available:
+              "after:content-[''] after:block after:mx-auto after:mt-1 after:w-1.5 after:h-1.5 after:rounded-full after:bg-[#1DE1FC]",
+            selected: "bg-[#1DE1FC] text-white !rounded-full",
+          }}
+          className="mb-6"
+          showOutsideDays={false}
+          captionLayout="dropdown"
+          classNames={{
+            day: "relative text-base w-10 h-10 flex items-center justify-center cursor-pointer",
+            selected: "bg-[#1DE1FC] text-white !rounded-full",
+          }}
+        />
+        <button
+          onClick={handleBooking}
+          className="w-full max-w-[304px] bg-[#183B7A] text-white font-semibold py-3 rounded-lg text-base mt-2"
+        >
+          Postuler au séjour
+        </button>
+      </div>
+    </div>
   );
 };
