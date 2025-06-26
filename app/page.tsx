@@ -15,13 +15,13 @@ export default function Home() {
     "Une communauté engagée",
   ];
   return (
-    <div className="p-4 sm:p-8">
+    <div className="p-4 sm:p-8 mt-20">
       <div className="rounded-[10px] overflow-hidden">
         <Header />
       </div>
-      <NatureBenefitsSection />
       <WhoWeAreSection items={items} />
       <MissionSection />
+      <NatureBenefitsSection />
       <MetaInfoSection />
       <JoinNephos />
     </div>

@@ -367,7 +367,7 @@ const EquipmentsDialog = ({
 }) => (
   <Dialog>
     <DialogTrigger asChild>
-      <button className="w-full self-center max-w-[400px] bg-[#183B7A] text-white font-semibold py-2 rounded-md text-base mt-2">
+      <button className="w-full self-center max-w-[400px] text-white font-semibold py-2 rounded-md text-base mt-2">
         Afficher les équipements
       </button>
     </DialogTrigger>

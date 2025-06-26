@@ -3,12 +3,12 @@ import { MetaInfoCard, MetaInfoCardProps } from "../shared/MetaInfoCard";
 
 export const MetaInfoSection = () => {
   return (
-    <section className="bg-nephos-lightBeige py-12 px-4">
+    <section className=" py-12 px-4">
       <div className="max-w-4xl mx-auto text-center mb-10">
         <h2 className="text-2xl md:text-3xl font-bold mb-2">
           Processus de placement saisonnier
         </h2>
-        <p className="text-nephos-gray text-base md:text-lg">
+        <p className="text-nephos-gray text-base md:text-lg mb-24">
           Nephos facilite les placements saisonniers pour les professionnels de
           santé en milieu rural en France.
         </p>

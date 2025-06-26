@@ -23,7 +23,7 @@ export default function Navbar({ loggedIn }: NavbarProps) {
         <div className="absolute inset-x-0 bottom-0 h-20 bg-no-repeat bg-bottom-center sm:hidden" />
 
         <div
-          className={`mx-auto flex items-center px-4 py-8 md:py-10 relative z-10 bg-nephos-blue [clip-path:ellipse(100%_100%_at_50%_0)] ${loggedIn ? "justify-between" : "justify-end"}`}
+          className={`sm:px-10 mx-auto flex items-center px-4 py-8 md:py-10 relative z-10 bg-nephos-blue [clip-path:ellipse(100%_100%_at_50%_0)] ${loggedIn ? "justify-between" : "justify-end"}`}
         >
           {loggedIn && <NavLinksDesktop pathname={pathname} />}
           <Logo href={loggedIn ? "/app" : "/"} />

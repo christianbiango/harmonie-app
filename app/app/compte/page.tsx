@@ -241,8 +241,8 @@ export default function AccountPage() {
 
   return (
     <>
-      <div>
-        <main className="max-w-4xl mx-auto px-4 py-6 pt-24">
+      <div className="pt-24 sm:pt-36">
+        <main className="max-w-4xl mx-auto px-4 p-6">
           <div className="flex justify-between items-center mb-6">
             <Link href="/" className="p-2">
               <ArrowLeft className="h-6 w-6 text-[#172C75]" />
