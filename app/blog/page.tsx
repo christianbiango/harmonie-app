@@ -42,7 +42,11 @@ const infoItems = [
   },
 ];
 
-export default async function BlogPage({ searchParams }: { searchParams: any }) {
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: any;
+}) {
   const params = await searchParams;
   const currentPage = Number(params.page) || 1;
   const postsPerPage = 10;
@@ -53,23 +57,28 @@ export default async function BlogPage({ searchParams }: { searchParams: any }) 
     return <p className="text-center">Impossible de charger les articles.</p>;
   }
 
-  const publishedPosts: Post[] = result.data.filter((post: Post) => post.published);
+  const publishedPosts: Post[] = result.data.filter(
+    (post: Post) => post.published
+  );
   const { total, totalPages } = result.metadata;
 
   return (
     <div className="max-w-7xl mx-auto py-10 px-4">
       {/* Header Section */}
       <section className="mb-16">
-        <h1 className="text-2xl md:text-3xl font-bold text-center mb-4">Nos infos</h1>
-        
+        <h1 className="text-2xl md:text-3xl font-bold text-center mb-4">
+          Nos infos
+        </h1>
+
         <div className="mx-auto mb-8">
           <h2 className="text-xl md:text-2xl font-semibold mb-3">
             Comprendre l'épuisement professionnel des soignants !
           </h2>
           <p className="text-gray-600 dark:text-gray-300">
-            L'épuisement professionnel des médecins est un problème crucial caractérisé par l'épuisement émotionnel,
-            la dépersonnalisation et une réduction du sentiment d'accomplissement personnel. Les facteurs contribuant
-            à cela incluent :
+            L'épuisement professionnel des médecins est un problème crucial
+            caractérisé par l'épuisement émotionnel, la dépersonnalisation et
+            une réduction du sentiment d'accomplissement personnel. Les facteurs
+            contribuant à cela incluent :
           </p>
         </div>
 
@@ -89,12 +98,19 @@ export default async function BlogPage({ searchParams }: { searchParams: any }) 
       {/* Blog Posts Grid */}
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {publishedPosts.map((post) => (
-          <Card key={post.id} className="bg-white dark:bg-gray-950 rounded-2xl overflow-hidden shadow-lg border-none flex flex-col">
+          <Card
+            key={post.id}
+            className="bg-white dark:bg-gray-950 rounded-2xl overflow-hidden shadow-lg border-none flex flex-col"
+          >
             {post.image_url && (
-              <div className="relative w-full h-48" role="img" aria-label={post.aria_label || post.alt_text || ''}>
+              <div
+                className="relative w-full h-48"
+                role="img"
+                aria-label={post.aria_label || post.alt_text || ""}
+              >
                 <Image
                   src={post.image_url}
-                  alt={post.alt_text || 'Image de l\'article'}
+                  alt={post.alt_text || "Image de l'article"}
                   fill
                   className="object-cover"
                 />
@@ -102,7 +118,9 @@ export default async function BlogPage({ searchParams }: { searchParams: any }) 
             )}
             <div className="bg-blue-900 text-white p-6 flex flex-col flex-grow">
               <CardHeader className="p-0 mb-4">
-                <CardTitle className="text-xl font-bold leading-tight">{post.title}</CardTitle>
+                <CardTitle className="text-xl font-bold leading-tight">
+                  {post.title}
+                </CardTitle>
               </CardHeader>
               <CardContent className="p-0 flex-grow">
                 <p className="opacity-80">{post.excerpt}</p>
@@ -111,10 +129,12 @@ export default async function BlogPage({ searchParams }: { searchParams: any }) 
                 <div className="bg-blue-800 px-4 py-2 rounded-md text-sm font-medium">
                   {post.read_time}
                 </div>
-                <Button asChild variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-900">
-                  <Link href={`/blog/${post.slug}`}>
-                    Voir l'article
-                  </Link>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="bg-transparent border-white text-white hover:bg-white hover:text-blue-900"
+                >
+                  <Link href={`/blog/${post.slug}`}>Voir l'article</Link>
                 </Button>
               </CardFooter>
             </div>
@@ -124,38 +144,52 @@ export default async function BlogPage({ searchParams }: { searchParams: any }) 
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-4 mt-12">
+        <nav
+          className="flex justify-center items-center gap-6 mt-12 px-8 py-4"
+          aria-label="Pagination"
+        >
           <Button
             variant="outline"
             disabled={currentPage <= 1}
             asChild
+            className="min-w-[110px] transition-colors duration-200 border-nephos-primary text-nephos-primary hover:bg-nephos-primary hover:text-white"
           >
             <Link
               href={`/blog?page=${currentPage - 1}`}
-              className={currentPage <= 1 ? 'pointer-events-none opacity-50' : ''}
+              className={
+                currentPage <= 1 ? "pointer-events-none opacity-50" : ""
+              }
+              aria-disabled={currentPage <= 1}
             >
-              Précédent
+              ← Précédent
             </Link>
           </Button>
-          
-          <span className="text-sm">
-            Page {currentPage} sur {totalPages}
+
+          <span className="text-base font-semibold px-5 py-2 rounded-lg bg-nephos-bgPrimary text-nephos-primary-dark border border-nephos-primary shadow-sm">
+            Page <span className="text-nephos-primary">{currentPage}</span>
+            <span className="opacity-60"> / {totalPages}</span>
           </span>
 
           <Button
             variant="outline"
             disabled={currentPage >= totalPages}
             asChild
+            className="min-w-[110px] transition-colors duration-200 border-nephos-primary text-nephos-primary hover:bg-nephos-primary hover:text-white"
           >
             <Link
               href={`/blog?page=${currentPage + 1}`}
-              className={currentPage >= totalPages ? 'pointer-events-none opacity-50' : ''}
+              className={
+                currentPage >= totalPages
+                  ? "pointer-events-none opacity-50"
+                  : ""
+              }
+              aria-disabled={currentPage >= totalPages}
             >
-              Suivant
+              Suivant →
             </Link>
           </Button>
-        </div>
+        </nav>
       )}
     </div>
   );
-} 
+}

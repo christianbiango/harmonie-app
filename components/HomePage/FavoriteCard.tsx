@@ -20,9 +20,9 @@ export const FavoriteCard = ({
   distance,
   activity,
 }: FavoriteCardProps) => (
-  <div className="flex items-center bg-[#183B7A] rounded-2xl p-6 gap-6 max-w-2xl w-full">
-    <div className="flex-1 min-w-0">
-      <div className="flex gap-2 mb-3">
+  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] items-stretch bg-[#183B7A] rounded-2xl p-6 gap-6 max-w-2xl w-full">
+    <div className="flex flex-col justify-between min-w-0">
+      <div className="flex flex-wrap gap-2 mb-3">
         {tags.map((tag, idx) => (
           <span
             key={idx}
@@ -36,30 +36,38 @@ export const FavoriteCard = ({
       <div className="text-white text-base mb-4 opacity-80">{subtitle}</div>
       <div className="flex flex-col gap-2 text-white text-base">
         <div className="flex items-center gap-2">
-          <Users className="w-5 h-5 opacity-80" />
+          <Users className="w-5 h-5 opacity-80" aria-hidden="true" />
           <span>{population}</span>
         </div>
         <div className="flex items-center gap-2">
-          <MapPin className="w-5 h-5 opacity-80" />
+          <MapPin className="w-5 h-5 opacity-80" aria-hidden="true" />
           <span>{distance}</span>
         </div>
         <div className="flex items-center gap-2">
-          <Mountain className="w-5 h-5 opacity-80" />
+          <Mountain className="w-5 h-5 opacity-80" aria-hidden="true" />
           <span>{activity}</span>
         </div>
       </div>
     </div>
-    <div className="flex items-center h-[140px]">
+
+    <div className="relative w-full h-[200px] md:w-[140px] sm:h-full">
       <Image
         src={image}
-        alt={title}
-        width={140}
-        height={140}
-        className="rounded-xl object-cover mb-0"
+        alt={`Illustration de ${title}`}
+        fill
+        className="rounded-xl object-cover"
+        sizes="(max-width: 768px) 100vw, 140px"
       />
     </div>
-    <div className="flex items-center justify-center h-[140px] w-14 bg-gray-200 rounded-2xl">
-      <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+
+    <div className="flex items-center justify-center h-full bg-gray-200 rounded-2xl self-center mx-auto md:mx-0 w-full">
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
         <path
           d="M9 6l6 6-6 6"
           stroke="#183B7A"

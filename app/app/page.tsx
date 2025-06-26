@@ -4,10 +4,9 @@ import Header from "@/components/HomePage/Header";
 import { KeyInfos } from "@/components/HomePage/KeyInfos";
 import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
 import { TripRecommandations } from "@/components/HomePage/TripRecommandations";
-import Footer from "@/components/navigation/Footer";
 import Navbar from "@/components/navigation/NavBar";
 import { KeyInfoStepProps } from "@/components/shared/KeyInfoStep";
-import { MapPin, Building, Users } from "lucide-react";
+import { Building, MapPin, Users } from "lucide-react";
 
 export default async function ProtectedPage() {
   const steps: KeyInfoStepProps[] = [
@@ -34,7 +33,6 @@ export default async function ProtectedPage() {
       <div className="hidden md:block">
         <MetaInfoSection />
       </div>
-      <Footer />
     </>
   );
 }
