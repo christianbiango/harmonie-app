@@ -73,7 +73,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <Navbar loggedIn={isLoggedIn} />
-          <div>{children}</div>
+          <div className="pt-24 sm:pt-36">{children}</div>
           <Footer />
         </ThemeProvider>
         <GoogleAnalytics gaId={env.GA_TRACKING_ID} />

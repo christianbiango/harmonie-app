@@ -76,7 +76,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({
 
       {/* Contenu de l'article */}
       <div
-        className="prose prose-lg max-w-none"
+        className="prose prose-lg max-w-none flex flex-col gap-10"
         aria-labelledby="content-heading"
         dangerouslySetInnerHTML={{ __html: content }}
       />

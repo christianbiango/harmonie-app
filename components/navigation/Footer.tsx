@@ -21,7 +21,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer role="contentinfo">
+    <footer role="contentinfo" className="pb-20 sm:pb-2">
       <div className="relative bg-nephos-blue [clip-path:ellipse(180%_90%_at_50%_100%)] sm:[clip-path:ellipse(110%_90%_at_50%_100%)] text-white py-10 text-center overflow-hidden">
         <div className="max-w-3xl mx-auto px-4 mt-10 relative z-10">
           <p className="text-lg italic">
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-6 flex flex-col items-center py-6">
+      <div className="hidden sm:flex mt-6 flex-col items-center py-6">
         <div className="flex gap-4 mb-3">
           {socialLinks.map(({ href, label, icon }) => (
             <a
