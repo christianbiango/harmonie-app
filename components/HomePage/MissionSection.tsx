@@ -10,7 +10,7 @@ export const MissionSection = () => (
       Nous connectons les soignants en quête d'équilibre avec des territoires en
       demande, en leur proposant des missions temporaires.
     </p>
-    <LinkButton link="/sign-in" text="Je m'inscris" />
+    <LinkButton link="/inscription" text="Je m'inscris" />
     <img
       src="/images/blue-arrow.svg"
       alt="arrow"

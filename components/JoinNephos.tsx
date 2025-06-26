@@ -10,7 +10,7 @@ export const JoinNephos = () => {
         className="absolute right-4 bottom-2 md:right-8 md:bottom-2 w-12 h-12"
       />
       <div className="mx-auto flex justify-center">
-        <LinkButton link="sign-in" text="Rejoindre Nephos" />
+        <LinkButton link="connexion" text="Rejoindre Nephos" />
       </div>
     </div>
   );

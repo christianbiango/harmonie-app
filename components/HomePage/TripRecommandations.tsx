@@ -1,5 +1,5 @@
 "use server";
-import { fetchUserRecommendedOffers } from "@/app/(actions)/recommandedHolidays";
+import { fetchUserRecommendedOffers } from "@/app/(actions)/holidays";
 import { Card } from "./TripCard";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
@@ -34,7 +34,7 @@ export const TripRecommandations = async () => {
         style={{ scrollSnapType: "x mandatory" }}
       >
         {offers.map((offer) => (
-          <Link href={`protected/offres/${offer.id}`} key={offer.id}>
+          <Link href={`app/offres/${offer.id}`} key={offer.id}>
             <Card
               key={offer.id}
               imageSrc={offer.image_url} // fallback if no image

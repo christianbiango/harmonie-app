@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/navigation/Footer";
+import AxeptioConsent from "@/components/AxeptioConsent";
 
 const defaultUrl = env.VERCEL_URL
   ? `https://${env.VERCEL_URL}`
@@ -56,11 +57,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const isLoggedIn = user ? true : false;
 
   return (
     <html lang="fr" className={geistSans.className} suppressHydrationWarning>
+      <AxeptioConsent />
       <body className="text-foreground bg-nephos-bgPrimary">
         <ThemeProvider
           attribute="class"
@@ -68,9 +72,9 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-         <Navbar loggedIn={isLoggedIn} />
+          <Navbar loggedIn={isLoggedIn} />
           <div>{children}</div>
-          <Footer/>
+          <Footer />
         </ThemeProvider>
         <GoogleAnalytics gaId={env.GA_TRACKING_ID} />
       </body>
