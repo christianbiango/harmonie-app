@@ -1,5 +1,6 @@
 import { DestinationFilters } from "@/components/HomePage/DestinationFilters";
-import DestinationSearch from "@/components/HomePage/DestinationSearch";
+import { DestinationSearchInput } from "@/components/HomePage/DestinationSearchInput";
+import { DestinationSearch } from "@/components/HomePage/DestinationSearch";
 import Header from "@/components/HomePage/Header";
 import { KeyInfos } from "@/components/HomePage/KeyInfos";
 import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
@@ -8,19 +9,25 @@ import Navbar from "@/components/navigation/NavBar";
 import { KeyInfoStepProps } from "@/components/shared/KeyInfoStep";
 import { Building, MapPin, Users } from "lucide-react";
 
-export default async function ProtectedPage() {
+export default async function ProtectedPage({
+  searchParams,
+}: {
+  searchParams: { search?: string };
+}) {
   const steps: KeyInfoStepProps[] = [
     { icon: MapPin, text: "Je choisis un lieu de mission" },
     { icon: Building, text: "Je suis logé·e et accompagné·e" },
     { icon: Users, text: "Je découvre, je soigne, je respire" },
   ];
 
+  const searchTerm = searchParams?.search || "";
+
   return (
     <>
       <Navbar loggedIn={true} />
       <Header />
       <main>
-        <DestinationSearch />
+        <DestinationSearchInput />
         <div className="relative">
           <DestinationFilters />
           <TripRecommandations />
