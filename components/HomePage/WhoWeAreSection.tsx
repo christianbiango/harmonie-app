@@ -18,7 +18,7 @@ const WhoWeAreCard = ({ number, text }: WhoWeAreCardProps) => (
 
 export const WhoWeAreSection = ({ items }: WhoWeAreSectionProps) => {
   return (
-    <section className="rounded-xl p-6 max-w-md mx-auto mt-8">
+    <section className="rounded-xl p-6 mx-auto mt-8">
       <h2 className="text-2xl font-bold text-center mb-2">Qui sommes nous ?</h2>
       <p className="text-center text-base text-gray-700 mb-6">
         Une plateforme digitale qui souhaite connecter les soignants volontaires

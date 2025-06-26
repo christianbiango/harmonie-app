@@ -1,9 +1,21 @@
+import { fetchSingleAction } from "@/app/(actions)/shared";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function OfferValidation() {
+type Params = {
+  id: string;
+};
+
+export default async function OfferValidation({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const { id } = await params;
+  const offer = await fetchSingleAction("holidays_offers", "id", id);
+  console.log("okk", offer);
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFFBF5] p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="flex flex-col items-center w-full max-w-md">
         {/* Success message */}
         <div className="flex items-center gap-2 mb-6 mt-4">
@@ -33,10 +45,10 @@ export default function OfferValidation() {
             className="w-full h-44 object-cover"
           />
           <div className="p-6 flex flex-col items-center text-white">
-            <div className="text-3xl font-bold mb-1">22</div>
+            <div className="text-3xl font-bold mb-1">{offer.families_help}</div>
             <div className="text-base mb-4">familles avec enfant à aider</div>
             <div className="w-full border-t border-white/30 my-2"></div>
-            <div className="text-3xl font-bold mb-1">90</div>
+            <div className="text-3xl font-bold mb-1">{offer.elders_help}</div>
             <div className="text-base">personnes âgées à aider</div>
           </div>
         </div>

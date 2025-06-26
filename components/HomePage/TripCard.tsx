@@ -10,21 +10,27 @@ interface CardProps {
   showHeart?: boolean;
 }
 
-export const Card = ({ imageSrc, alt, title, description, showHeart = false }: CardProps) => (
-  <div className="relative min-w-[250px] flex-shrink-0 md:min-w-0 rounded-xl overflow-hidden bg-white shadow-sm">
+export const Card = ({
+  imageSrc,
+  alt,
+  title,
+  description,
+  showHeart = false,
+}: CardProps) => (
+  <div className="relative min-w-[250px] md:min-w-0">
     <Image
       src={imageSrc}
       alt={alt}
-      className="w-full h-40 object-cover"
+      className="w-full object-cover rounded-xl max-w-[232px] max-h-[232px]"
       width={300}
       height={160}
     />
     {showHeart && (
-      <div className="absolute top-2 right-2 bg-white p-2 rounded-full z-10">
+      <div className="absolute top-2 right-2 py-2 rounded-full z-10">
         <Heart className="text-gray-500" />
       </div>
     )}
-    <div className="p-4">
+    <div className="py-4">
       <div className="mb-1">{title}</div>
       <div className="text-gray-600 text-sm">{description}</div>
     </div>

@@ -1,91 +1,127 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Quote, MapPin } from "lucide-react";
-import Navbar from "@/components/navigation/NavBar";
+import { ArrowLeft, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
+import { fetchDoctorAccount } from "@/app/(actions)/user";
 
-const DoctorStatsCard = () => (
-  <div className="hidden md:flex bg-[#172C75] rounded-3xl p-8 relative text-white items-center gap-12 shadow-lg w-full max-w-5xl mx-auto">
-    <div className="absolute top-6 left-8 z-20">
-      <Image
-        src="/images/homepage/quote.svg"
-        width={35}
-        height={35}
-        alt="Citation icon"
-      />
-    </div>
-    <div className="flex flex-col items-center justify-center min-w-[160px] z-10">
-      <div className="relative w-24 h-24">
-        <div className="absolute inset-0 rounded-full bg-teal-400 p-1 border-4 border-white">
-          <Image
-            src="https://gqvcwvrannnmuyyyfvqx.supabase.co/storage/v1/object/public/nephos-blog/account/doctor-account.png"
-            alt="Jean Delahut"
-            width={96}
-            height={96}
-            className="rounded-full object-cover w-full h-full"
-          />
+type DoctorStatsCardProps = {
+  doctorName: string;
+  profileImage: string;
+  pastBookingsCount: number;
+  createdAt: string;
+};
+
+const DoctorStatsCard = ({
+  doctorName,
+  profileImage,
+  pastBookingsCount,
+  createdAt,
+}: DoctorStatsCardProps) => {
+  const daysActive = createdAt
+    ? Math.floor(
+        (Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60 * 24)
+      )
+    : 0;
+
+  return (
+    <div className="hidden md:flex bg-[#172C75] rounded-3xl p-8 relative text-white items-center gap-12 shadow-lg w-full max-w-5xl mx-auto">
+      <div className="absolute top-6 left-8 z-20">
+        <Image
+          src="/images/homepage/quote.svg"
+          width={35}
+          height={35}
+          alt="Citation icon"
+        />
+      </div>
+      <div className="flex flex-col items-center justify-center min-w-[160px] z-10">
+        <div className="relative w-24 h-24">
+          <div className="absolute inset-0 rounded-full bg-teal-400 p-1 border-4 border-white">
+            <Image
+              src={profileImage}
+              alt={doctorName}
+              width={96}
+              height={96}
+              className="rounded-full object-cover w-full h-full"
+            />
+          </div>
+        </div>
+        <p className="font-bold mt-4 text-lg">{doctorName}</p>
+      </div>
+      <div className="flex-1 flex justify-center items-center gap-16">
+        <div className="flex flex-col items-center">
+          <span className="text-6xl font-bold">{pastBookingsCount}</span>
+          <span className="text-base mt-1 text-center">
+            missions
+            <br />
+            effectuées
+          </span>
+        </div>
+        <div className="h-24 w-px bg-white/40 mx-8" />
+        <div className="flex flex-col items-center">
+          <span className="text-6xl font-bold">{daysActive}</span>
+          <span className="text-base mt-1 text-center">
+            jours
+            <br />
+            d'activité
+          </span>
         </div>
       </div>
-      <p className="font-bold mt-4 text-lg">Jean Delahut</p>
     </div>
-    <div className="flex-1 flex justify-center items-center gap-16">
-      <div className="flex flex-col items-center">
-        <span className="text-6xl font-bold">2</span>
-        <span className="text-base mt-1">
-          séjours
-          <br />
-          effectués
-        </span>
-      </div>
-      <div className="h-24 w-px bg-white/40 mx-8" />
-      <div className="flex flex-col items-center">
-        <span className="text-6xl font-bold">17</span>
-        <span className="text-base mt-1">
-          années
-          <br />
-          d'expérience
-        </span>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
-const DoctorStatsCardMobile = () => (
-  <div className="bg-[#172C75] rounded-3xl p-5 relative text-white flex items-center gap-4 sm:hidden">
-    <div className="absolute top-4 left-4 z-20">
-      <Image
-        src="/images/homepage/quote.svg"
-        width={35}
-        height={35}
-        alt="Citation icon z-15"
-      />
-    </div>
-    <div className="flex-shrink-0 text-center z-10 pl-2">
-      <div className="relative w-20 h-20">
-        <div className="absolute inset-0 rounded-full bg-teal-400 p-0.5 border-2 border-white">
-          <Image
-            src="/images/account/doctor-account.png"
-            alt="Jean Delahut"
-            width={80}
-            height={80}
-            className="rounded-full object-cover w-full h-full"
-          />
+const DoctorStatsCardMobile = ({
+  doctorName,
+  profileImage,
+  pastBookingsCount,
+  createdAt,
+}: DoctorStatsCardProps) => {
+  const daysActive = createdAt
+    ? Math.floor(
+        (Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60 * 24)
+      )
+    : 0;
+
+  return (
+    <div className="bg-[#172C75] rounded-3xl p-5 relative text-white flex items-center gap-4 sm:hidden">
+      <div className="absolute top-4 left-4 z-20">
+        <Image
+          src="/images/homepage/quote.svg"
+          width={35}
+          height={35}
+          alt="Citation icon z-15"
+        />
+      </div>
+      <div className="flex-shrink-0 text-center z-10 pl-2">
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 rounded-full bg-teal-400 p-0.5 border-2 border-white">
+            <Image
+              src={profileImage}
+              alt={doctorName}
+              width={80}
+              height={80}
+              className="rounded-full object-cover w-full h-full"
+            />
+          </div>
+        </div>
+        <p className="font-bold mt-2 text-sm">{doctorName}</p>
+      </div>
+      <div className="flex-grow flex flex-col justify-center gap-2 pl-2 z-10">
+        <div>
+          <span className="text-3xl font-bold">{pastBookingsCount}</span>
+          <p className="text-xs -mt-1 tracking-tight">missions effectuées</p>
+        </div>
+        <hr className="border-white/30 my-1" />
+        <div>
+          <span className="text-3xl font-bold">{daysActive}</span>
+          <p className="text-xs -mt-1 tracking-tight">jours d'activité</p>
         </div>
       </div>
-      <p className="font-bold mt-2 text-sm">Jean Delahut</p>
     </div>
-    <div className="flex-grow flex flex-col justify-center gap-2 pl-2 z-10">
-      <div>
-        <span className="text-3xl font-bold">2</span>
-        <p className="text-xs -mt-1 tracking-tight">missions effectués</p>
-      </div>
-      <hr className="border-white/30 my-1" />
-      <div>
-        <span className="text-3xl font-bold">17</span>
-        <p className="text-xs -mt-1 tracking-tight">années d'exercice</p>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 type StayRequestCardMobileProps = {
   imageSrc: string;
@@ -103,7 +139,7 @@ function StayRequestCardMobile({
   actionLabel,
 }: StayRequestCardMobileProps) {
   return (
-    <div className="w-full sm:hidden">
+    <div className="w-full sm:hidden mb-4">
       <div className="flex gap-4 mb-4">
         <div className="w-[120px] flex-shrink-0">
           <Image
@@ -160,7 +196,7 @@ const StayRequestCardDesktop = ({
         </div>
         <div className="bg-[#183B7A] text-white flex flex-col items-center justify-center p-8 gap-6">
           <p className="text-center text-base md:text-lg">
-            Votre demande de séjour a bien été transmise* à la{" "}
+            Votre demande de séjour a bien été transmise à la{" "}
             <span className="font-bold">commune de {commune}.</span>
           </p>
           <a
@@ -179,10 +215,34 @@ const StayRequestCardDesktop = ({
 );
 
 export default function AccountPage() {
+  const [user, setUser] = useState<any>();
+
+  useEffect(() => {
+    async function fetchDoctor() {
+      const res = await fetchDoctorAccount();
+      const today = new Date();
+
+      const pastBookings = res.offers_bookings.filter(
+        (b: any) => new Date(b.date) < today
+      );
+      const upcomingBookings = res.offers_bookings.filter(
+        (b: any) => new Date(b.date) >= today
+      );
+
+      setUser({
+        ...res,
+        pastBookings,
+        upcomingBookings,
+      });
+    }
+    fetchDoctor();
+  }, []);
+  console.log("user", user);
+
   return (
     <>
-      <div>
-        <main className="max-w-4xl  mx-auto px-4 py-6 pt-24">
+      <div className="pt-24 sm:pt-36">
+        <main className="max-w-4xl mx-auto px-4 p-6">
           <div className="flex justify-between items-center mb-6">
             <Link href="/" className="p-2">
               <ArrowLeft className="h-6 w-6 text-[#172C75]" />
@@ -190,16 +250,25 @@ export default function AccountPage() {
             <h2 className="text-xl font-bold -ml-8">Mon compte</h2>
             <Link
               href="/app/account/edit"
-              className="text-sm underline text-black\80 font-light"
+              className="text-sm underline text-black/80 font-light"
             >
               Modifier
             </Link>
           </div>
 
-          {/* Desktop version */}
-          <DoctorStatsCard />
-          {/* Mobile version (hidden on md+) */}
-          <DoctorStatsCardMobile />
+          <DoctorStatsCard
+            doctorName={user?.first_name + " " + user?.last_name}
+            profileImage="/images/account/doctor-account.png"
+            pastBookingsCount={user?.pastBookings?.length || 0}
+            createdAt={user?.created_at}
+          />
+
+          <DoctorStatsCardMobile
+            doctorName={user?.first_name + " " + user?.last_name}
+            profileImage="/images/account/doctor-account.png"
+            pastBookingsCount={user?.pastBookings?.length || 0}
+            createdAt={user?.created_at}
+          />
 
           <div className="text-left text-xs text-gray-500 mt-4 px-2">
             <p>
@@ -215,19 +284,22 @@ export default function AccountPage() {
             <h3 className="text-xl font-bold text-[#172C75] mb-4">
               Mes demandes de séjours
             </h3>
-            <StayRequestCardMobile
-              imageSrc="/images/homepage/church.png"
-              imageAlt="Église à Mios"
-              communeName="Mios"
-              actionLink="/app/stays/123"
-              actionLabel="Revoir cette offre"
-            />
-            {/* Tablet & Desktop: Stay Request Card */}
-            <StayRequestCardDesktop
-              imageSrc="/images/homepage/church.png"
-              commune="Mios"
-              offerUrl="#"
-            />
+            {user?.upcomingBookings?.map((booking: any, i: number) => (
+              <div key={i}>
+                <StayRequestCardMobile
+                  imageSrc={booking.id_holidays_offers.image_url}
+                  imageAlt={booking.id_holidays_offers.image_alt}
+                  communeName={booking.id_holidays_offers.id_cities.name}
+                  actionLink={`/app/offres/${booking.id_holidays_offers.id}`}
+                  actionLabel="Revoir cette offre"
+                />
+                <StayRequestCardDesktop
+                  imageSrc={booking.id_holidays_offers.image_url}
+                  commune={booking.id_holidays_offers.id_cities.name}
+                  offerUrl={`/app/offres/${booking.id_holidays_offers.id}`}
+                />
+              </div>
+            ))}
           </div>
 
           <div className="mt-8">
@@ -235,36 +307,23 @@ export default function AccountPage() {
               Mes anciens séjours
             </h3>
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center">
-                <div className="h-full">
+              {user?.pastBookings?.map((booking: any, i: number) => (
+                <div key={i} className="text-center">
                   <Image
-                    src="/images/account/vigan-polygon.png"
-                    alt="Vigan"
+                    src={booking.id_holidays_offers.image_url}
+                    alt="Séjour passé"
                     width={200}
                     height={250}
                     className="w-full h-full object-cover"
                   />
+                  <div className="flex items-center justify-center mt-2">
+                    <MapPin className="h-5 w-5 text-[#172C75] mr-1" />
+                    <p className="font-semibold text-[#172C75]">
+                      {booking.id_holidays_offers.id_cities.name}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-center mt-2">
-                  <MapPin className="h-5 w-5 text-[#172C75] mr-1" />
-                  <p className="font-semibold text-[#172C75]">Mimizan</p>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="h-full">
-                  <Image
-                    src="/images/account/vigan-polygon.png"
-                    alt="Vigan"
-                    width={200}
-                    height={250}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex items-center justify-center mt-2">
-                  <MapPin className="h-5 w-5 text-[#172C75] mr-1" />
-                  <p className="font-semibold text-[#172C75]">Vigan</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </main>

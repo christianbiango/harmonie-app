@@ -13,12 +13,12 @@ export const MetaInfoCard = ({
 }: MetaInfoCardProps) => (
   <div className="flex-1 bg-nephos-primary rounded-xl p-6 flex flex-col items-center text-white relative overflow-visible">
     <div
-      className={`absolute -top-12 ${cardNumber !== 1 ? "left-14" : "right-auto sm:right-none sm:left-14"} -translate-x-1/2 -z-10 pointer-events-none`}
+      className={`absolute -top-20 ${cardNumber !== 1 ? "left-14" : "right-auto sm:right-none sm:left-14"} -translate-x-1/2 -z-10 pointer-events-none`}
     >
       <img
         src={image}
         alt=""
-        className="w-20 h-20 object-contain"
+        className="w-32 h-32 object-contain"
         style={{ clipPath: "inset(0 0 -50% 0)" }}
         draggable={false}
       />

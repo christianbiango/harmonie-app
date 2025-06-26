@@ -1,7 +1,7 @@
 import { LinkButton } from "../shared/LinkButton";
 
 export const MissionSection = () => (
-  <section className="rounded-xl p-6 max-w-md mx-auto mt-8 text-center relative">
+  <section className="rounded-xl p-6 mx-auto mt-8 text-center relative">
     <h2 className="text-2xl font-bold mb-2">Notre mission ?</h2>
     <p className="mb-6 text-base text-gray-800">
       Découvrez une nouvelle façon d'exercer la médecine : saisonnière, choisie

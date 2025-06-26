@@ -1,16 +1,16 @@
 import Image from "next/image";
-import { BlueButton } from "../BlueButtton"
+import { BlueButton } from "../BlueButtton";
 export default function Header() {
   return (
     <header className="mt-10 relative w-full min-h-[310px] md:min-h-[600px] overflow-hidden flex flex-col justify-center">
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <Image
-          src="/images/homepage/field.png"
+          src="/images/home-header.png"
           alt="Paysage avec un champ doré et un ciel bleu"
           layout="fill"
           objectFit="cover"
           priority
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-[10px]"
         />
       </div>
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-white text-center px-5">
