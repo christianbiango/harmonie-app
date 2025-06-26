@@ -4,7 +4,7 @@ import { Users, MapPin, Mountain } from "lucide-react";
 interface FavoriteCardProps {
   title: string;
   subtitle: string;
-  tags: string[];
+  categories: string[];
   image: string;
   population: string;
   distance: string;
@@ -14,7 +14,7 @@ interface FavoriteCardProps {
 export const FavoriteCard = ({
   title,
   subtitle,
-  tags,
+  categories,
   image,
   population,
   distance,
@@ -23,12 +23,12 @@ export const FavoriteCard = ({
   <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto] items-stretch bg-[#183B7A] rounded-2xl p-6 gap-6 max-w-2xl w-full">
     <div className="flex flex-col justify-between min-w-0">
       <div className="flex flex-wrap gap-2 mb-3">
-        {tags.map((tag, idx) => (
+        {categories.map((category, idx) => (
           <span
             key={idx}
             className="bg-[#2B4B8B] text-white text-xs px-3 py-1 rounded-full font-medium"
           >
-            {tag}
+            {category}
           </span>
         ))}
       </div>
