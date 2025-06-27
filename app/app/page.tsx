@@ -26,7 +26,6 @@ export default async function ProtectedPage() {
           <DestinationFilters />
           <TripRecommandations />
           <div className="pointer-events-none absolute top-0 right-0 h-full w-8 md:hidden bg-gradient-to-l from-[#FFFBF5] from-80% to-transparent z-10" />
-          <DependsOnYouSection />
         </div>
       </main>
       <div className="p-4">
