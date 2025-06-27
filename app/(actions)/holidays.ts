@@ -106,3 +106,45 @@ export const fetchUserRecommendedOffers = async (userId: string) => {
   // Flatten the result to just the holidays_offers
   return (data || []).map((row: any) => row.holidays_offers);
 };
+
+// Search communes by name and return commune name, an image URL and description from holidays_offers
+export const searchCommunesAction = async (
+  searchTerm: string,
+  maxPeople?: number
+) => {
+  const supabase = await createClient();
+  let query = supabase
+    .from("holidays_offers")
+    .select(
+      `
+      image_url,
+      description, 
+      max_people,
+      cities (
+        name
+      )
+      `
+    )
+    .ilike("cities.name", `%${searchTerm}%`)
+    .limit(10);
+
+  if (typeof maxPeople === "number" && !isNaN(maxPeople)) {
+    query = query.gte("max_people", maxPeople);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  // Transform into flat objects with desired fields
+  return (data || [])
+    .filter((row: any) => row.cities && row.cities.name)
+    .map((row: any) => ({
+      name: row.cities.name,
+      image_url: row.image_url,
+      description: row.description,
+      max_people: row.max_people,
+    }));
+};
