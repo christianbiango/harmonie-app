@@ -39,7 +39,6 @@ export function SearchBar({ onResultsChange }: SearchBarProps) {
           )
           .limit(10);
 
-        console.log("Search results:", data);
         if (error) throw new Error(error.message);
         onResultsChange(data || []);
       } catch (err) {

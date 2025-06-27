@@ -13,7 +13,6 @@ export default async function OfferValidation({
 }) {
   const { id } = await params;
   const offer = await fetchSingleAction("holidays_offers", "id", id);
-  console.log("okk", offer);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="flex flex-col items-center w-full max-w-md">
@@ -38,8 +37,8 @@ export default async function OfferValidation({
         {/* Card with image and stats */}
         <div className="bg-[#183B7A] rounded-2xl overflow-hidden w-full mb-6">
           <Image
-            src="/images/homepage/church.png"
-            alt="Commune"
+            src={offer.image_url}
+            alt={offer.image_alt}
             width={400}
             height={180}
             className="w-full h-44 object-cover"
@@ -54,7 +53,7 @@ export default async function OfferValidation({
         </div>
         {/* Button */}
         <Link href="/">
-          <button className="w-full bg-[#183B7A] text-white font-semibold py-3 rounded-lg text-base">
+          <button className="w-full bg-[#183B7A] text-white py-3 px-6 rounded-lg text-base">
             Revenir à l'accueil
           </button>
         </Link>
