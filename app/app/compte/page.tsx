@@ -29,7 +29,7 @@ const DoctorStatsCard = ({
     <div className="hidden md:flex bg-[#172C75] rounded-3xl p-8 relative text-white items-center gap-12 shadow-lg w-full max-w-5xl mx-auto">
       <div className="absolute top-6 left-8 z-20">
         <Image
-          src="/images/homepage/quote.svg"
+          src="/icons/quote.svg"
           width={35}
           height={35}
           alt="Citation icon"
@@ -237,7 +237,6 @@ export default function AccountPage() {
     }
     fetchDoctor();
   }, []);
-  console.log("user", user);
 
   return (
     <>
@@ -265,7 +264,7 @@ export default function AccountPage() {
 
           <DoctorStatsCardMobile
             doctorName={user?.first_name + " " + user?.last_name}
-            profileImage="/images/account/doctor-account.png"
+            profileImage="/images/account/doctor-account.webp"
             pastBookingsCount={user?.pastBookings?.length || 0}
             createdAt={user?.created_at}
           />

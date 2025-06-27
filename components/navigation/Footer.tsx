@@ -28,10 +28,9 @@ export default function Footer() {
             <span className="text-cyan-400 text-3xl font-bold mr-2">“</span>
             Si votre mal-être est trop important et que vous avez besoin d’une
             aide médicale{" "}
-            <span className="bg-white text-[#172C75] px-2 py-1 rounded-full font-semibold">
+            <span className="bg-[url(/images/homepage/bluecircle.svg)] bg-no-repeat bg-center bg-contain p-4">
               urgente
             </span>
-            .
           </p>
           <p className="mt-6 text-xl font-bold underline underline-offset-4 decoration-cyan-400">
             0800 800 854

@@ -1,9 +1,9 @@
 "use server";
 import { fetchUserRecommendedOffers } from "@/app/(actions)/holidays";
-import { Card } from "./TripCard";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { HolidayTripCard } from "./HolidayTripCard";
 
 export const TripRecommandations = async () => {
   const supabase = await createClient();
@@ -35,7 +35,7 @@ export const TripRecommandations = async () => {
       >
         {offers.map((offer) => (
           <Link href={`app/offres/${offer.id}`} key={offer.id}>
-            <Card
+            <HolidayTripCard
               key={offer.id}
               imageSrc={offer.image_url} // fallback if no image
               alt={offer.name}

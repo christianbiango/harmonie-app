@@ -5,7 +5,7 @@ export default function Header() {
     <header className="mt-10 relative w-full min-h-[310px] md:min-h-[600px] overflow-hidden flex flex-col justify-center">
       <div className="absolute top-0 left-0 w-full h-full z-10">
         <Image
-          src="/images/home-header.png"
+          src="/images/home-header.webp"
           alt="Paysage avec un champ doré et un ciel bleu"
           layout="fill"
           objectFit="cover"

@@ -60,7 +60,9 @@ const config = {
           primary: "#0A3678",
           "primary-dark": "#0D347A",
           blue: "#172C75",
-          blueText: "0A2E7A"
+          blueText: "#0A2E7A",
+          darkBlue: "183B7A",
+          cyan: "#1DE1FC",
         },
       },
       borderRadius: {
