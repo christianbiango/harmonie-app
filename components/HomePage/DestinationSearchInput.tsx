@@ -36,6 +36,10 @@ export function DestinationSearchInput() {
     params.set("children", String(children));
     params.set("babies", String(babies));
     router.push(`/app/recherche?${params.toString()}`);
+    setSearchTerm("");
+    setAdults(0);
+    setChildren(0);
+    setBabies(0);
   };
 
   return (
@@ -51,7 +55,7 @@ export function DestinationSearchInput() {
           >
             <Search className="h-5 w-5" />
           </button>
-          <div className="w-full">
+          <div className="w-full ">
             <input
               type="text"
               value={searchTerm}

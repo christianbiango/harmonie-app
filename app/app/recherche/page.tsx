@@ -1,4 +1,8 @@
 import { DestinationSearch } from "@/components/HomePage/DestinationSearch";
+import { TripRecommandations } from "@/components/HomePage/TripRecommandations";
+import { DestinationFilters } from "@/components/HomePage/DestinationFilters";
+import { DestinationSearchInput } from "@/components/HomePage/DestinationSearchInput";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function RecherchePage({
@@ -13,16 +17,25 @@ export default function RecherchePage({
   const maxPeople = adults + children + babies;
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
-      <div className="max-w-4xl mx-auto py-8">
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          Résultats de recherche
-        </h1>
-        <DestinationSearch searchTerm={searchTerm} maxPeople={maxPeople} />
-        <div className="mt-8 text-center">
-          <Link href="/" className="text-blue-600 hover:underline">
-            ← Retour à l'accueil
+      <div className="max-w-4xl mx-auto py-32">
+        <div className="mt-8 relative flex items-center justify-center">
+          <Link
+            href="/"
+            className="absolute left-0 text-black hover:underline flex items-center"
+          >
+            <ArrowLeft className="w-6 h-6" />
           </Link>
+          <h1 className="text-2xl font-bold mb-6">En fonction de vous</h1>
         </div>
+
+        <main>
+          <DestinationSearchInput />
+          <div className="relative">
+            <DestinationFilters />
+            <div className="pointer-events-none absolute top-0 right-0 h-full w-8 md:hidden bg-gradient-to-l from-[#FFFBF5] from-80% to-transparent z-10" />
+            <DestinationSearch searchTerm={searchTerm} maxPeople={maxPeople} />
+          </div>
+        </main>
       </div>
     </div>
   );
