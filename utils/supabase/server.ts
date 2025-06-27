@@ -7,7 +7,7 @@ export const createClient = async () => {
 
   return createServerClient(
     env.SUPABASE.NEXT_PUBLIC_SUPABASE_URL!,
-    env.SUPABASE.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    env.SUPABASE.NEXT_PRIVATE_SUPABASE_API_KEY!,
     {
       cookies: {
         getAll() {

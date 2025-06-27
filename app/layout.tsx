@@ -1,10 +1,12 @@
+import Navbar from "@/components/navigation/NavBar";
+import { env } from "@/config/env";
+import { createClient } from "@/utils/supabase/server";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
-import AuthButton from "@/components/header-auth";
-import { env } from "@/config/env";
+import Footer from "@/components/navigation/Footer";
+import AxeptioConsent from "@/components/AxeptioConsent";
 
 const defaultUrl = env.VERCEL_URL
   ? `https://${env.VERCEL_URL}`
@@ -49,44 +51,30 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const isLoggedIn = user ? true : false;
+
   return (
-    <html lang="en" className={geistSans.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
+    <html lang="fr" className={geistSans.className} suppressHydrationWarning>
+      <AxeptioConsent />
+      <body className="text-foreground bg-nephos-bgPrimary">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col items-center">
-            <div className="flex-1 w-full flex flex-col gap-15 items-center">
-              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-                <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                  <div className="flex gap-5 items-center font-semibold">
-                    <Link href={"/"}>
-                      <img
-                        src="/images/logo/nephos-logo-baseline.svg"
-                        alt="Logo de la plateforme digitale Nephos"
-                        role="img"
-                        aria-label="Logo de la plateforme digitale Nephos"
-                        width={80}
-                        height={80}
-                      />
-                    </Link>
-                    <AuthButton></AuthButton>
-                  </div>
-                </div>
-              </nav>
-              <div className="flex flex-col gap-20 max-w-5xl p-5">
-                {children}
-              </div>
-            </div>
-          </main>
+          <Navbar loggedIn={isLoggedIn} />
+          <div>{children}</div>
+          <Footer />
         </ThemeProvider>
         <GoogleAnalytics gaId={env.GA_TRACKING_ID} />
       </body>

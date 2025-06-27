@@ -6,8 +6,6 @@ describe("Home", () => {
   it("renders a heading", () => {
     render(<Home />);
 
-    const mainElement = screen.getByRole("main");
-
-    expect(mainElement).toHaveTextContent(/Nephos/i);
+    expect(screen.getByTestId("nature-benefits-section")).toBeInTheDocument();
   });
 });
