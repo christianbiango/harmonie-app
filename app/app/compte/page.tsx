@@ -88,7 +88,7 @@ const DoctorStatsCardMobile = ({
     <div className="bg-[#172C75] rounded-3xl p-5 relative text-white flex items-center gap-4 sm:hidden">
       <div className="absolute top-4 left-4 z-20">
         <Image
-          src="/images/homepage/quote.svg"
+          src="/icons/quote.svg"
           width={35}
           height={35}
           alt="Citation icon z-15"
@@ -311,9 +311,9 @@ export default function AccountPage() {
                   <Image
                     src={booking.id_holidays_offers.image_url}
                     alt="Séjour passé"
-                    width={200}
+                    width={300}
                     height={250}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl"
                   />
                   <div className="flex items-center justify-center mt-2">
                     <MapPin className="h-5 w-5 text-[#172C75] mr-1" />

@@ -1,4 +1,4 @@
-import { Card } from "./HolidayTripCard";
+import { HolidayTripCard } from "./HolidayTripCard";
 
 export const DependsOnYouSection = () => {
   return (
@@ -12,13 +12,13 @@ export const DependsOnYouSection = () => {
         className="flex md:grid md:grid-cols-2 gap-8 mb-12 overflow-x-auto md:overflow-x-visible scrollbar-hide pr-8"
         style={{ scrollSnapType: "x mandatory" }}
       >
-        <Card
+        <HolidayTripCard
           imageSrc="/images/homepage/field.png"
           alt="Sore"
           title="Sore"
           description="Nature et tranquillité"
         />
-        <Card
+        <HolidayTripCard
           imageSrc="/images/homepage/bluecircle.svg"
           alt="Sabres"
           title="Sabres"

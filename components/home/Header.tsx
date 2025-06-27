@@ -17,7 +17,7 @@ export default function Header() {
         <div className="max-w-4xl mx-auto flex flex-col justify-center">
           <h1 className="text-2xl md:text-5xl lg:flex-row leading-tight mb-5 flex flex-col gap-2 font-semibold relative">
             <Image
-              src="/images/homepage/quote.svg"
+              src="/icons/quote.svg"
               alt="Guillemet"
               width={80}
               height={80}

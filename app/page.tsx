@@ -1,12 +1,12 @@
 "use client";
 
-import Header from "@/components/HomePage/Header";
-import { WhoWeAreSection } from "@/components/HomePage/WhoWeAreSection";
-import { MissionSection } from "@/components/HomePage/MissionSection";
-import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
+import Header from "@/components/home/Header";
+import { WhoWeAreSection } from "@/components/home/WhoWeAreSection";
+import { MissionSection } from "@/components/home/MissionSection";
+import { MetaInfoSection } from "@/components/home/MetaInfoSection";
 import { LinkButton } from "@/components/shared/LinkButton";
 import { JoinNephos } from "@/components/JoinNephos";
-import { NatureBenefitsSection } from "@/components/HomePage/NatureBenefitsSection";
+import { NatureBenefitsSection } from "@/components/home/NatureBenefitsSection";
 
 export default function Home() {
   const items = [

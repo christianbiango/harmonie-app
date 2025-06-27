@@ -1,4 +1,4 @@
-import { HolidayTripCard } from "../../HomePage/HolidayTripCard";
+import { HolidayTripCard } from "@/components/home/HolidayTripCard";
 
 type SimilarHolidaysProps = {
   similarities: HolidayOfferSimilaritiesId[];

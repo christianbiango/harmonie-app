@@ -1,5 +1,5 @@
 import { fetchFavoriteHolidays } from "@/app/(actions)/user";
-import { FavoriteCard } from "@/components/HomePage/FavoriteCard";
+import { FavoriteCard } from "@/components/home/FavoriteCard";
 import Link from "next/link";
 
 export default async function FavorisPage() {

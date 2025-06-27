@@ -1,9 +1,9 @@
-import { DestinationFilters } from "@/components/HomePage/DestinationFilters";
-import DestinationSearch from "@/components/HomePage/DestinationSearch";
-import Header from "@/components/HomePage/Header";
-import { KeyInfos } from "@/components/HomePage/KeyInfos";
-import { MetaInfoSection } from "@/components/HomePage/MetaInfoSection";
-import { TripRecommandations } from "@/components/HomePage/TripRecommandations";
+import { DestinationFilters } from "@/components/home/DestinationFilters";
+import DestinationSearch from "@/components/home/DestinationSearch";
+import Header from "@/components/home/Header";
+import { KeyInfos } from "@/components/home/KeyInfos";
+import { MetaInfoSection } from "@/components/home/MetaInfoSection";
+import { TripRecommandations } from "@/components/home/TripRecommandations";
 import Navbar from "@/components/navigation/NavBar";
 import { KeyInfoStepProps } from "@/components/shared/KeyInfoStep";
 import { Building, MapPin, Users } from "lucide-react";
