@@ -31,7 +31,7 @@ const PostTemplate: React.FC<PostTemplateProps> = ({
   };
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8" aria-labelledby="post">
+    <article className="max-w-4xl mx-auto px-4 py-8 pt-24 sm:pt-36" aria-labelledby="post">
       {/* En-tête de l'article */}
       <header className="mb-8">
         <h1 id="article-title" className="text-4xl font-bold mb-4">
