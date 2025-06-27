@@ -13,14 +13,14 @@ export const DependsOnYouSection = () => {
         style={{ scrollSnapType: "x mandatory" }}
       >
         <HolidayTripCard
-          imageSrc="/images/homepage/field.png"
-          alt="Sore"
+          imageSrc="https://gqvcwvrannnmuyyyfvqx.supabase.co/storage/v1/object/public/nephos-blog/holidays/Montguyon.webp"
+          alt="Image de la ville Sore"
           title="Sore"
           description="Nature et tranquillité"
         />
         <HolidayTripCard
-          imageSrc="/images/homepage/bluecircle.svg"
-          alt="Sabres"
+          imageSrc="https://gqvcwvrannnmuyyyfvqx.supabase.co/storage/v1/object/public/nephos-blog/holidays/Montguyon.webp"
+          alt="Image de la ville Sabres"
           title="Sabres"
           description="Village typique landais"
         />
